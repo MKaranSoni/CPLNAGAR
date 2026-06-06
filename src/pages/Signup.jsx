@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCivicData } from '../hooks/useCivicData';
+import { registerUser } from "../services/authService";
 import { User, Mail, Lock, UserPlus, MapPin } from 'lucide-react';
 
 export default function Signup() {
@@ -11,12 +12,33 @@ export default function Signup() {
   const [ward, setWard] = useState('Ward 12 - Vasant Kunj');
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    // Register defaults to citizen role
-    switchUserRole('citizen');
-    navigate('/dashboard');
-  };
+  const handleSignup = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await registerUser({
+      name,
+      email,
+      password
+    });
+
+    
+
+    const token = response.data?.token;
+
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+
+    switchUserRole("citizen");
+
+    navigate("/dashboard");
+
+  } catch (error) {
+    console.error(error);
+    alert(error.response?.data || "Registration Failed");
+  }
+};
 
   return (
     <div className="glass-panel p-8 rounded-3xl border border-white/60 shadow-premium relative bg-white/70">

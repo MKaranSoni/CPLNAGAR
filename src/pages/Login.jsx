@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCivicData } from '../hooks/useCivicData';
+import { loginUser } from "../services/authService";
 import { Mail, Lock, LogIn, Sparkles, User, ShieldCheck } from 'lucide-react';
 
 export default function Login() {
@@ -8,13 +9,31 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+ 
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Log in as default citizen
-    switchUserRole('citizen');
-    navigate('/dashboard');
-  };
+  const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await loginUser({ email, password });
+
+    console.log("LOGIN RESPONSE:", response.data);
+
+    const token = response.data?.token;
+
+    if (!token) throw new Error("Token missing");
+
+    localStorage.setItem("token", token);
+
+    switchUserRole("citizen");
+
+    navigate("/dashboard");
+
+  } catch (error) {
+    console.error(error);
+    alert(error.response?.data || "Login Failed");
+  }
+};
 
   const handleRoleQuickLogin = (role) => {
     switchUserRole(role);

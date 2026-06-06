@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { createComplaint } from "../services/complaintService";
 import { useCivicData } from '../hooks/useCivicData';
 import { 
   UploadCloud, 
@@ -108,24 +109,53 @@ export default function ComplaintUpload() {
     setDescription('');
     setLocationName('');
   };
+  const severityMap = {
+  Low: "LOW",
+  Medium: "MODERATE",
+  High: "HIGH",
+  Critical: "CRITICAL"
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title || !description || !locationName) return;
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    addComplaint({
+  try {
+
+    const complaintData = {
       title,
       description,
       category,
-      priority,
-      locationName,
+
+      severity: severityMap[priority],
+
       latitude,
       longitude,
-      photoUrl: selectedImage
-    });
 
-    navigate('/tracking');
-  };
+      imageUrl: selectedImage
+    };
+
+    const response =
+      await createComplaint(complaintData);
+
+    console.log(
+      "Complaint Created:",
+      response.data
+    );
+
+    alert("Complaint Submitted Successfully");
+
+    navigate("/tracking");
+
+  } catch (error) {
+
+    console.error("Complaint Error:", error);
+
+    alert(
+      error.response?.data?.message ||
+      "Failed to create complaint"
+    );
+  }
+};
 
   return (
     <div className="space-y-8">
