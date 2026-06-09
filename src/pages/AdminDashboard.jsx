@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     <div className="space-y-8">
       {/* Title */}
       <div>
-        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-white">Municipal Command Center</h2>
+        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-blue">Municipal Command Center</h2>
         <p className="text-xs text-slate-400 mt-1">Direct corporate operations, audit AI Computer Vision diagnostics, and cross-reference geographic hotspot clusters.</p>
       </div>
 
@@ -45,7 +45,7 @@ export default function AdminDashboard() {
         
         <div className="p-5 rounded-2xl glass-panel">
           <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono block">TOTAL FILED REPORTS</span>
-          <h3 className="text-2xl font-extrabold font-outfit text-white mt-2">{adminStats.totalComplaints}</h3>
+          <h3 className="text-2xl font-extrabold font-outfit blue mt-2">{adminStats.totalComplaints}</h3>
           <span className="text-[10px] text-emerald-400 font-bold mt-1 block">📈 +12% Weekly increase</span>
         </div>
 
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
 
         <div className="p-5 rounded-2xl glass-panel-glow border-emerald-500/20 bg-slate-950/20">
           <span className="text-[9px] text-slate-450 font-bold uppercase tracking-widest font-mono block">AI DUPLICATES FILTERED</span>
-          <h3 className="text-2xl font-extrabold font-outfit text-white mt-2">{adminStats.spamFilteredComplaints}</h3>
+          <h3 className="text-2xl font-extrabold font-outfit text-lightblue mt-2">{adminStats.spamFilteredComplaints}</h3>
           <span className="text-[10px] text-emerald-400 font-bold mt-1 block">🛡️ 100% spam-defense rating</span>
         </div>
 

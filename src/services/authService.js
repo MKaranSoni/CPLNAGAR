@@ -9,3 +9,6 @@ export const registerUser = (data) => {
 export const loginUser = (data) => {
   return axios.post(`${BASE_URL}/login`, data);
 };
+export const getToken = () => {
+  return localStorage.getItem("token");
+};
