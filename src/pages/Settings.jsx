@@ -19,8 +19,8 @@ export default function Settings() {
     <div className="space-y-8">
       {/* Title */}
       <div>
-        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-white">System Settings</h2>
-        <p className="text-xs text-slate-400 mt-1">Configure your personal smart dashboard, adjust notification frequencies, and refine ward locations.</p>
+        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-black">System Settings</h2>
+        <p className="text-xs text-black mt-1">Configure your personal smart dashboard, adjust notification frequencies, and refine ward locations.</p>
       </div>
 
       <div className="max-w-2xl mx-auto space-y-6">
@@ -28,7 +28,7 @@ export default function Settings() {
           
           {/* Section 1: Notification preferences */}
           <div className="space-y-4">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5 pb-2 border-b border-slate-900/60">
+            <h3 className="text-xs font-bold text-black uppercase tracking-widest flex items-center gap-1.5 pb-2 border-b border-slate-900/60">
               <Bell className="w-4 h-4 text-emerald-400" />
               <span>Notification Alert Channels</span>
             </h3>
@@ -36,7 +36,7 @@ export default function Settings() {
             <div className="space-y-3">
               <div className="flex items-center justify-between py-1.5">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-200">Push Notifications</h4>
+                  <h4 className="text-xs font-bold text-black">Push Notifications</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Real-time alerts when AI triage completes or volunteer sweeps dispatched.</p>
                 </div>
                 <input
@@ -49,7 +49,7 @@ export default function Settings() {
 
               <div className="flex items-center justify-between py-1.5 border-t border-slate-900/40">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-200">Email Dispatches</h4>
+                  <h4 className="text-xs font-bold text-black">Email Dispatches</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Weekly digests summarizing citizen rankings, badges earned, and resolved tickets.</p>
                 </div>
                 <input
@@ -62,7 +62,7 @@ export default function Settings() {
 
               <div className="flex items-center justify-between py-1.5 border-t border-slate-900/40">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-200">Carbon & Cleanup Summary</h4>
+                  <h4 className="text-xs font-bold text-black">Carbon & Cleanup Summary</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Notifications about upcoming native tree sapling allocations and cleanup streak saves.</p>
                 </div>
                 <input
@@ -77,7 +77,7 @@ export default function Settings() {
 
           {/* Section 2: Ward and Location Settings */}
           <div className="space-y-4 pt-4">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5 pb-2 border-b border-slate-900/60">
+            <h3 className="text-xs font-bold text-black uppercase tracking-widest flex items-center gap-1.5 pb-2 border-b border-slate-900/60">
               <MapPin className="w-4 h-4 text-blue-400" />
               <span>Ward & Session Settings</span>
             </h3>
@@ -119,7 +119,7 @@ export default function Settings() {
             </h3>
 
             <div className="p-3.5 rounded-xl bg-purple-500/5 border border-purple-500/10 text-[10px] text-slate-450 leading-relaxed space-y-2">
-              <p className="font-bold text-white font-mono uppercase tracking-wider text-[8px]">ACTIVE API TOKENS AVAILABLE</p>
+              <p className="font-bold text-black font-mono uppercase tracking-wider text-[8px]">ACTIVE API TOKENS AVAILABLE</p>
               <p>NagarSetu is connected to the Municipal Corporations open-data initiative. Your citizen reviews are compiled to optimize street light grid power loads and dump trucks routes.</p>
               <div className="flex items-center gap-1.5 font-mono text-[9px] text-purple-400 font-bold bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20 max-w-max">
                 MUNI-SECURE-SYNC: CONNECTED

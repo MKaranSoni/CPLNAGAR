@@ -10,8 +10,8 @@ export default function Notifications() {
       {/* Title */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-white">Civic Notifications</h2>
-          <p className="text-xs text-slate-400 mt-1">Review active updates, environmental drive notifications, and system notifications.</p>
+          <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-slate-900">Civic Notifications</h2>
+          <p className="text-xs text-slate-900 mt-1">Review active updates, environmental drive notifications, and system notifications.</p>
         </div>
 
         {notifications.filter(n => n.unread).length > 0 && (
@@ -58,10 +58,10 @@ export default function Notifications() {
 
                 <div className="flex-grow min-w-0 pr-4">
                   <div className="flex justify-between items-baseline mb-1">
-                    <h4 className="text-xs font-bold text-slate-200 truncate">{notif.title}</h4>
+                    <h4 className="text-xs font-bold text-slate-900 truncate">{notif.title}</h4>
                     <span className="text-[9px] text-slate-500 font-mono font-medium whitespace-nowrap">{notif.time}</span>
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed pr-2">{notif.message}</p>
+                  <p className="text-xs text-slate-900 leading-relaxed pr-2">{notif.message}</p>
                 </div>
 
                 {/* Unread circle badge */}

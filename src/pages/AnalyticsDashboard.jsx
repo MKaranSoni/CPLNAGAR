@@ -40,8 +40,8 @@ export default function AnalyticsDashboard() {
     <div className="space-y-8">
       {/* Title */}
       <div>
-        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-white">Smart Analytics Dashboard</h2>
-        <p className="text-xs text-slate-400 mt-1">Audit predictive resolution curves, categorize ward-level concerns, and evaluate municipal speed trends.</p>
+        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-black">Smart Analytics Dashboard</h2>
+        <p className="text-xs text-black mt-1">Audit predictive resolution curves, categorize ward-level concerns, and evaluate municipal speed trends.</p>
       </div>
 
       {/* Row 1: Shared global stats */}
@@ -50,22 +50,22 @@ export default function AnalyticsDashboard() {
         <div className="p-6 rounded-2xl glass-panel relative overflow-hidden">
           <TrendingUp className="w-5 h-5 text-emerald-400 absolute top-6 right-6" />
           <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono block">COMPLIANCE RATING</span>
-          <h3 className="text-3xl font-extrabold font-outfit text-white mt-3">{mockAdminStats.resolutionRate}</h3>
-          <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">Average citizen endorsement index stands at <span className="text-white font-semibold">94.2% positive feedback</span>.</p>
+          <h3 className="text-3xl font-extrabold font-outfit text-black mt-3">{mockAdminStats.resolutionRate}</h3>
+          <p className="text-xs text-black mt-1.5 leading-relaxed">Average citizen endorsement index stands at <span className="text-white font-semibold">94.2% positive feedback</span>.</p>
         </div>
 
         <div className="p-6 rounded-2xl glass-panel relative overflow-hidden">
           <Activity className="w-5 h-5 text-blue-400 absolute top-6 right-6" />
           <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono block">AVERAGE RESOLUTION TIME</span>
-          <h3 className="text-3xl font-extrabold font-outfit text-white mt-3">{mockAdminStats.avgResolutionTime}</h3>
-          <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">AI screening auto-triage reduced municipal ticket response delays by <span className="text-emerald-400 font-bold">14 hours</span>.</p>
+          <h3 className="text-3xl font-extrabold font-outfit text-black mt-3">{mockAdminStats.avgResolutionTime}</h3>
+          <p className="text-xs text-black mt-1.5 leading-relaxed">AI screening auto-triage reduced municipal ticket response delays by <span className="text-emerald-400 font-bold">14 hours</span>.</p>
         </div>
 
         <div className="p-6 rounded-2xl glass-panel relative overflow-hidden">
           <BarChart3 className="w-5 h-5 text-purple-400 absolute top-6 right-6" />
           <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono block">ACTIVE DISPATCH SPEND</span>
-          <h3 className="text-3xl font-extrabold font-outfit text-white mt-3">₹4.8L / Mo</h3>
-          <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">Direct ward allocations focusing on sorting equipment, sapling seeds, and safety guards.</p>
+          <h3 className="text-3xl font-extrabold font-outfit text-black mt-3">₹4.8L / Mo</h3>
+          <p className="text-xs text-black mt-1.5 leading-relaxed">Direct ward allocations focusing on sorting equipment, sapling seeds, and safety guards.</p>
         </div>
 
       </div>
@@ -76,7 +76,7 @@ export default function AnalyticsDashboard() {
         {/* Weekly trends Line/Area chart */}
         <div className="p-6 rounded-3xl glass-panel space-y-4">
           <div className="flex justify-between items-center pb-2 border-b border-slate-900/60 mb-2">
-            <h4 className="text-sm font-bold font-outfit text-slate-200">Weekly Ticket Velocity</h4>
+            <h4 className="text-sm font-bold font-outfit text-black">Weekly Ticket Velocity</h4>
             <span className="text-[9px] bg-emerald-500/10 text-emerald-400 font-mono font-bold px-2 py-0.5 rounded border border-emerald-500/20">LIVE REPORTS</span>
           </div>
 
@@ -108,7 +108,7 @@ export default function AnalyticsDashboard() {
         {/* Category Share Pie Chart */}
         <div className="p-6 rounded-3xl glass-panel space-y-4">
           <div className="flex justify-between items-center pb-2 border-b border-slate-900/60 mb-2">
-            <h4 className="text-sm font-bold font-outfit text-slate-200">Citizen Concern Share</h4>
+            <h4 className="text-sm font-bold font-outfit text-black">Citizen Concern Share</h4>
             <span className="text-[9px] bg-blue-500/10 text-blue-400 font-mono font-bold px-2 py-0.5 rounded border border-blue-500/20">AI CLASSIFIED</span>
           </div>
 
@@ -144,7 +144,7 @@ export default function AnalyticsDashboard() {
                     <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: entry.color }} />
                     <span className="text-slate-350 text-[11px] font-medium">{entry.name}</span>
                   </div>
-                  <span className="font-bold text-white font-mono">{entry.value}</span>
+                  <span className="font-bold text-black font-mono">{entry.value}</span>
                 </div>
               ))}
             </div>
@@ -157,7 +157,7 @@ export default function AnalyticsDashboard() {
       {/* Row 3: Ward performance bar charts */}
       <div className="p-6 rounded-3xl glass-panel space-y-4">
         <div className="flex justify-between items-center pb-2 border-b border-slate-900/60 mb-2">
-          <h4 className="text-sm font-bold font-outfit text-slate-200">Ward Performance Comparison</h4>
+          <h4 className="text-sm font-bold font-outfit text-black">Ward Performance Comparison</h4>
           <span className="text-[9px] bg-purple-500/10 text-purple-400 font-mono font-bold px-2 py-0.5 rounded border border-purple-500/20">SECTOR INDEX</span>
         </div>
 

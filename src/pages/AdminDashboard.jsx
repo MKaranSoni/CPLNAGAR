@@ -37,26 +37,26 @@ export default function AdminDashboard() {
       {/* Title */}
       <div>
         <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-blue">Municipal Command Center</h2>
-        <p className="text-xs text-slate-400 mt-1">Direct corporate operations, audit AI Computer Vision diagnostics, and cross-reference geographic hotspot clusters.</p>
+        <p className="text-xs text-black mt-1">Direct corporate operations, audit AI Computer Vision diagnostics, and cross-reference geographic hotspot clusters.</p>
       </div>
 
       {/* Row 1: Municipal Stats Summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         
         <div className="p-5 rounded-2xl glass-panel">
-          <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono block">TOTAL FILED REPORTS</span>
+          <span className="text-[9px] text-black font-bold uppercase tracking-widest font-mono block">TOTAL FILED REPORTS</span>
           <h3 className="text-2xl font-extrabold font-outfit blue mt-2">{adminStats.totalComplaints}</h3>
           <span className="text-[10px] text-emerald-400 font-bold mt-1 block">📈 +12% Weekly increase</span>
         </div>
 
         <div className="p-5 rounded-2xl glass-panel">
-          <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono block">RESOLVED TICKETS</span>
+          <span className="text-[9px] text-black font-bold uppercase tracking-widest font-mono block">RESOLVED TICKETS</span>
           <h3 className="text-2xl font-extrabold font-outfit text-emerald-400 mt-2">{adminStats.resolvedComplaints}</h3>
-          <span className="text-[10px] text-slate-500 font-medium mt-1 block">Avg speed: {adminStats.avgResolutionTime}</span>
+          <span className="text-[10px] text-black font-medium mt-1 block">Avg speed: {adminStats.avgResolutionTime}</span>
         </div>
 
         <div className="p-5 rounded-2xl glass-panel">
-          <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest font-mono block">ACTIVE IN PROCESS</span>
+          <span className="text-[9px] text-black font-bold uppercase tracking-widest font-mono block">ACTIVE IN PROCESS</span>
           <h3 className="text-2xl font-extrabold font-outfit text-blue-400 mt-2">{adminStats.activeComplaints}</h3>
           <span className="text-[10px] text-blue-400 font-bold mt-1 block">In Dispatch: 42 teams</span>
         </div>
@@ -75,11 +75,11 @@ export default function AdminDashboard() {
         {/* Left 2 Cols: AI Triage Desk */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-bold font-outfit text-white flex items-center gap-2">
+            <h3 className="text-lg font-bold font-outfit text-black flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-emerald-400" />
               <span>AI-Screened Tickets Triage</span>
             </h3>
-            <span className="text-[10px] bg-slate-950 text-slate-400 font-mono px-2 py-0.5 rounded border border-slate-900">AUTO-TRIAGE ACTIVE</span>
+            <span className="text-[10px] bg-slate-950 text-white font-mono px-2 py-0.5 rounded border border-slate-900">AUTO-TRIAGE ACTIVE</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -102,7 +102,7 @@ export default function AdminDashboard() {
                       t.priority === 'Critical' ? 'bg-red-500/20 text-red-400' : 'bg-slate-800 text-slate-400'
                     }`}>{t.priority}</span>
                   </div>
-                  <h4 className="text-xs font-bold text-slate-200 line-clamp-1 leading-snug">{t.title}</h4>
+                  <h4 className="text-xs font-bold text-black line-clamp-1 leading-snug">{t.title}</h4>
                 </button>
               ))}
             </div>
@@ -113,8 +113,8 @@ export default function AdminDashboard() {
                 <div>
                   <div className="flex justify-between items-start border-b border-slate-900 pb-3.5 mb-4">
                     <div>
-                      <span className="text-[9px] bg-slate-900 text-slate-400 font-mono px-2.5 py-0.5 rounded border border-slate-800">{activeTicket.id}</span>
-                      <h4 className="text-sm font-bold text-slate-200 mt-2">{activeTicket.title}</h4>
+                      <span className="text-[9px] bg-slate-900 text-white font-mono px-2.5 py-0.5 rounded border border-slate-800">{activeTicket.id}</span>
+                      <h4 className="text-sm font-bold text-black mt-2">{activeTicket.title}</h4>
                     </div>
                   </div>
 
@@ -122,25 +122,25 @@ export default function AdminDashboard() {
                     
                     {/* Category prediction confidence */}
                     <div className="p-3 bg-slate-950/60 border border-slate-900 rounded-xl">
-                      <span className="text-[8px] text-slate-500 font-bold uppercase tracking-wider block">AI CATEGORY CONFIDENCE</span>
+                      <span className="text-[8px] text-white font-bold uppercase tracking-wider block">AI CATEGORY CONFIDENCE</span>
                       <span className="text-sm font-bold text-emerald-400 font-mono block mt-1">{activeTicket.aiMetrics.categoryConfidence}</span>
-                      <span className="text-[9px] text-slate-400 block mt-0.5">{activeTicket.category}</span>
+                      <span className="text-[9px] text-white block mt-0.5">{activeTicket.category}</span>
                     </div>
 
                     {/* Duplicate checker metric */}
                     <div className="p-3 bg-slate-950/60 border border-slate-900 rounded-xl">
-                      <span className="text-[8px] text-slate-500 font-bold uppercase tracking-wider block">DUPLICATE INDEX</span>
+                      <span className="text-[8px]  text-white font-bold uppercase tracking-wider block">DUPLICATE INDEX</span>
                       <span className="text-sm font-bold text-white font-mono block mt-1">{activeTicket.aiMetrics.isLegit}</span>
-                      <span className="text-[9px] text-slate-400 block mt-0.5 truncate">{activeTicket.aiMetrics.duplicateCheck}</span>
+                      <span className="text-[9px]  text-white  block mt-0.5 truncate">{activeTicket.aiMetrics.duplicateCheck}</span>
                     </div>
 
                   </div>
 
                   {/* Location tag detail */}
-                  <div className="mt-4 p-3 bg-slate-900/40 rounded-xl flex items-start gap-2.5 text-xs text-slate-400 leading-normal border border-slate-900">
+                  <div className="mt-4 p-3 bg-slate-900/40 rounded-xl flex items-start gap-2.5 text-xs  text-black leading-normal border border-slate-900">
                     <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-bold text-slate-200">EXIF Geolocation Coordinates</p>
+                      <p className="font-bold  text-black">EXIF Geolocation Coordinates</p>
                       <p className="mt-0.5">{activeTicket.locationName}</p>
                     </div>
                   </div>
@@ -151,7 +151,7 @@ export default function AdminDashboard() {
                   <button
                     onClick={() => handleUpdateStatus(activeTicket.id, 'In Progress', "Municipal crew dispatched with vacuum sweeps.")}
                     disabled={activeTicket.status === 'In Progress' || activeTicket.status === 'Resolved'}
-                    className="px-4 py-2.5 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white text-xs font-semibold transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-4 py-2.5 rounded-xl border border-slate-800 bg-slate-900  text-black hover:text-white text-xs font-semibold transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     🚀 Dispatch Crew
                   </button>
@@ -172,7 +172,7 @@ export default function AdminDashboard() {
 
               </div>
             ) : (
-              <div className="md:col-span-2 glass-panel p-16 text-center text-slate-600 text-xs">
+              <div className="md:col-span-2 glass-panel p-16 text-center text-white text-xs">
                 Select a ticket to review AI Computer Vision outputs.
               </div>
             )}
@@ -182,7 +182,7 @@ export default function AdminDashboard() {
 
         {/* Right 1 Col: Live Heatmap Cluster Simulation */}
         <div className="space-y-4">
-          <h3 className="text-lg font-bold font-outfit text-white flex items-center gap-2">
+          <h3 className="text-lg font-bold font-outfit text-black flex items-center gap-2">
             <Map className="w-5 h-5 text-blue-400" />
             <span>Smart City Cluster Map</span>
           </h3>
@@ -212,7 +212,7 @@ export default function AdminDashboard() {
 
             {/* Dynamic tooltips container */}
             <div className="relative z-20 h-full flex flex-col justify-between pointer-events-none">
-              <span className="text-[8px] bg-slate-900 px-2 py-0.5 rounded font-mono font-bold text-slate-500 self-start border border-slate-800"> blue map coordinates </span>
+              <span className="text-[8px] bg-slate-900 px-2 py-0.5 rounded font-mono font-bold text-white self-start border border-slate-800"> blue map coordinates </span>
 
               {hoveredHotspot ? (
                 <div className="p-3 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl space-y-1">
@@ -221,7 +221,7 @@ export default function AdminDashboard() {
                   <p className="text-[8px] text-red-400 font-mono font-semibold uppercase leading-none mt-1">Priority: {hoveredHotspot.priority}</p>
                 </div>
               ) : (
-                <div className="p-3 bg-slate-950/40 border border-slate-900 rounded-xl text-[9px] text-slate-500 leading-normal">
+                <div className="p-3 bg-slate-950/40 border border-slate-900 rounded-xl text-[9px] text-black leading-normal">
                   Hover over the pulsing hotspots to inspect localized issue densities.
                 </div>
               )}

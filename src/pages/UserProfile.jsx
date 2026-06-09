@@ -39,20 +39,20 @@ export default function UserProfile() {
 
         <div className="flex-1 text-center sm:text-left space-y-2">
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 justify-center sm:justify-start">
-            <h2 className="text-2xl font-bold font-outfit text-white">{currentUser.name}</h2>
+            <h2 className="text-2xl font-bold font-outfit text-slate-900">{currentUser.name}</h2>
             
             <div className="flex items-center gap-1.5 justify-center mt-1 sm:mt-0">
               <span className="text-[10px] bg-emerald-500/20 text-emerald-400 font-mono px-2 py-0.5 rounded font-bold border border-emerald-500/10 uppercase">
                 LVL {currentUser.level || 1}
               </span>
-              <span className="text-[10px] bg-slate-900 text-slate-400 font-mono px-2 py-0.5 rounded font-bold border border-slate-800 uppercase">
+              <span className="text-[10px] bg-slate-900 text-white font-mono px-2 py-0.5 rounded font-bold border border-slate-800 uppercase">
                 {currentUser.role}
               </span>
             </div>
           </div>
 
-          <p className="text-xs text-slate-400 flex items-center justify-center sm:justify-start gap-1 leading-none">
-            <MapPin className="w-3.5 h-3.5 text-slate-500" />
+          <p className="text-xs text-slate-900 flex items-center justify-center sm:justify-start gap-1 leading-none">
+            <MapPin className="w-3.5 h-3.5 text-slate-900" />
             Vasant Kunj Ward 12, New Delhi, India
           </p>
 
@@ -75,8 +75,8 @@ export default function UserProfile() {
       {currentUser.role !== 'admin' && (
         <div className="p-6 rounded-2xl glass-panel space-y-4">
           <div className="flex justify-between items-center text-xs">
-            <span className="text-slate-400 font-medium">Accumulated Green XP Meter</span>
-            <span className="text-white font-bold font-mono">{currentUser.xp} / {currentUser.xpToNextLevel} XP</span>
+            <span className="text-slate-900 font-medium">Accumulated Green XP Meter</span>
+            <span className="text-slate-900 font-bold font-mono">{currentUser.xp} / {currentUser.xpToNextLevel} XP</span>
           </div>
           
           <div className="w-full bg-slate-950 rounded-full h-3 overflow-hidden">
@@ -95,7 +95,7 @@ export default function UserProfile() {
         {/* Left: Badges cabinet */}
         <div className="lg:col-span-2 space-y-6">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-bold font-outfit text-white">Verified Badge Showcase</h3>
+            <h3 className="text-lg font-bold font-outfit text-slate-900">Verified Badge Showcase</h3>
             <Award className="w-5 h-5 text-emerald-400" />
           </div>
 
@@ -106,7 +106,7 @@ export default function UserProfile() {
                   {bdg.icon}
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-200">{bdg.title}</h4>
+                  <h4 className="text-xs font-bold text-slate-900">{bdg.title}</h4>
                   <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider font-mono mt-0.5">COMPLETED</p>
                   <p className="text-[11px] text-slate-400 leading-relaxed mt-2">{bdg.desc}</p>
                 </div>
@@ -117,7 +117,7 @@ export default function UserProfile() {
 
         {/* Right: History Log Ledger */}
         <div className="space-y-6">
-          <h3 className="text-lg font-bold font-outfit text-white">Recent Civic Actions</h3>
+          <h3 className="text-lg font-bold font-outfit text-slate-900">Recent Civic Actions</h3>
           
           <div className="p-5 rounded-2xl glass-panel space-y-4 max-h-[360px] overflow-y-auto pr-1">
             
@@ -128,8 +128,8 @@ export default function UserProfile() {
                   <User className="w-4 h-4" />
                 </div>
                 <div>
-                  <h5 className="font-bold text-slate-200">Filed Ticket {rep.id}</h5>
-                  <p className="text-[10px] text-slate-400 truncate mt-0.5">{rep.title}</p>
+                  <h5 className="font-bold text-slate-900">Filed Ticket {rep.id}</h5>
+                  <p className="text-[10px] text-slate-900 truncate mt-0.5">{rep.title}</p>
                   <span className="text-[8px] text-slate-500 font-mono mt-1 block">Status: {rep.status}</span>
                 </div>
               </div>
@@ -142,9 +142,9 @@ export default function UserProfile() {
                   <Zap className="w-4 h-4" />
                 </div>
                 <div>
-                  <h5 className="font-bold text-slate-200">Redeemed Eco Benefit</h5>
-                  <p className="text-[10px] text-slate-400 truncate mt-0.5">{code.title}</p>
-                  <span className="text-[8px] text-slate-500 font-mono mt-1 block">Voucher Code: {code.code}</span>
+                  <h5 className="font-bold text-slate-900">Redeemed Eco Benefit</h5>
+                  <p className="text-[10px] text-slate-900 truncate mt-0.5">{code.title}</p>
+                  <span className="text-[8px] text-slate-900 font-mono mt-1 block">Voucher Code: {code.code}</span>
                 </div>
               </div>
             ))}
@@ -155,9 +155,9 @@ export default function UserProfile() {
                 <HeartHandshake className="w-4 h-4" />
               </div>
               <div>
-                <h5 className="font-bold text-slate-200">Joined NagarSetu</h5>
-                <p className="text-[10px] text-slate-400 mt-0.5">Activated smart-city citizen session.</p>
-                <span className="text-[8px] text-slate-500 font-mono mt-1 block">May 24, 2026</span>
+                <h5 className="font-bold text-slate-900">Joined NagarSetu</h5>
+                <p className="text-[10px] text-slate-900 mt-0.5">Activated smart-city citizen session.</p>
+                <span className="text-[8px] text-slate-900 font-mono mt-1 block">May 24, 2026</span>
               </div>
             </div>
 

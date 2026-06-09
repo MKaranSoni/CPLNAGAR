@@ -25,7 +25,7 @@ export default function Leaderboard() {
     <div className="space-y-8">
       {/* Title */}
       <div>
-        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-white">City Leaderboard & Rewards</h2>
+        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-gray-900">City Leaderboard & Rewards</h2>
         <p className="text-xs text-slate-400 mt-1">Compare environmental stats, climb the ward hierarchy, and spend your Green XP in the merchant rewards store.</p>
       </div>
 
@@ -68,7 +68,7 @@ export default function Leaderboard() {
             {/* Citizens Roster */}
             {activeTab === 'citizens' && (
               <div className="space-y-3">
-                <div className="grid grid-cols-6 text-[10px] font-bold text-slate-500 uppercase tracking-widest pb-2 border-b border-slate-900/60 font-mono">
+                <div className="grid grid-cols-6 text-[10px] font-bold text-gray-900 uppercase tracking-widest pb-2 border-b border-slate-900/60 font-mono">
                   <div className="col-span-3">Citizen Name</div>
                   <div className="text-center">Level</div>
                   <div className="text-center">Streak</div>
@@ -84,14 +84,14 @@ export default function Leaderboard() {
                   >
                     <div className="col-span-3 flex items-center gap-3">
                       <span className={`w-6 text-center font-bold font-mono text-xs ${
-                        cit.rank === 1 ? 'text-yellow-400' : cit.rank === 2 ? 'text-slate-300' : cit.rank === 3 ? 'text-amber-600' : 'text-slate-500'
+                        cit.rank === 1 ? 'text-yellow-400' : cit.rank === 2 ? 'text-gray-900' : cit.rank === 3 ? 'text-amber-600' : 'text-gray-900'
                       }`}>
                         {cit.rank === 1 ? '🥇' : cit.rank === 2 ? '🥈' : cit.rank === 3 ? '🥉' : `#${cit.rank}`}
                       </span>
                       <img src={cit.avatar} alt={cit.name} className="w-8 h-8 rounded-full border border-slate-800 object-cover" />
-                      <span className="font-bold text-slate-200">{cit.name}</span>
+                      <span className="font-bold text-gray-900">{cit.name}</span>
                     </div>
-                    <div className="text-center font-mono font-bold text-slate-300">{cit.level}</div>
+                    <div className="text-center font-mono font-bold text-gray-900">{cit.level}</div>
                     <div className="text-center font-bold text-orange-400">🔥 {cit.streak}d</div>
                     <div className="text-right font-bold text-emerald-400 font-mono">{cit.xp} XP</div>
                   </div>
@@ -102,7 +102,7 @@ export default function Leaderboard() {
             {/* Volunteers Roster */}
             {activeTab === 'volunteers' && (
               <div className="space-y-3">
-                <div className="grid grid-cols-5 text-[10px] font-bold text-slate-500 uppercase tracking-widest pb-2 border-b border-slate-900/60 font-mono">
+                <div className="grid grid-cols-5 text-[10px] font-bold text-gray-900 uppercase tracking-widest pb-2 border-b border-slate-900/60 font-mono">
                   <div className="col-span-3">Volunteer Leader</div>
                   <div className="text-center">Cleanups</div>
                   <div className="text-right">Reliability</div>
@@ -117,14 +117,14 @@ export default function Leaderboard() {
                   >
                     <div className="col-span-3 flex items-center gap-3">
                       <span className={`w-6 text-center font-bold font-mono text-xs ${
-                        vol.rank === 1 ? 'text-yellow-400' : vol.rank === 2 ? 'text-slate-300' : vol.rank === 3 ? 'text-amber-600' : 'text-slate-500'
+                        vol.rank === 1 ? 'text-yellow-400' : vol.rank === 2 ? 'text-gray-900' : vol.rank === 3 ? 'text-amber-600' : 'text-gray-900'
                       }`}>
                         {vol.rank === 1 ? '🥇' : vol.rank === 2 ? '🥈' : vol.rank === 3 ? '🥉' : `#${vol.rank}`}
                       </span>
                       <img src={vol.avatar} alt={vol.name} className="w-8 h-8 rounded-full border border-slate-800 object-cover" />
-                      <span className="font-bold text-slate-200">{vol.name}</span>
+                      <span className="font-bold text-gray-900">{vol.name}</span>
                     </div>
-                    <div className="text-center font-mono font-bold text-slate-300">{vol.solvedCount}</div>
+                    <div className="text-center font-mono font-bold text-gray-900">{vol.solvedCount}</div>
                     <div className="text-right font-bold text-blue-400 font-mono">{vol.score}%</div>
                   </div>
                 ))}
@@ -134,7 +134,7 @@ export default function Leaderboard() {
             {/* Wards Roster */}
             {activeTab === 'wards' && (
               <div className="space-y-3">
-                <div className="grid grid-cols-5 text-[10px] font-bold text-slate-500 uppercase tracking-widest pb-2 border-b border-slate-900/60 font-mono">
+                <div className="grid grid-cols-5 text-[10px] font-bold text-gray-900 uppercase tracking-widest pb-2 border-b border-slate-900/60 font-mono">
                   <div className="col-span-2">Ward Name</div>
                   <div className="text-center">Issues Solved</div>
                   <div className="text-center">Compliance</div>
@@ -145,13 +145,13 @@ export default function Leaderboard() {
                   <div key={wrd.rank} className="grid grid-cols-5 items-center text-xs py-3 border-b border-slate-900/40 last:border-0">
                     <div className="col-span-2 flex items-center gap-3">
                       <span className={`w-6 text-center font-bold font-mono text-xs ${
-                        wrd.rank === 1 ? 'text-yellow-400' : wrd.rank === 2 ? 'text-slate-300' : wrd.rank === 3 ? 'text-amber-600' : 'text-slate-500'
+                        wrd.rank === 1 ? 'text-yellow-400' : wrd.rank === 2 ? 'text-gray-900' : wrd.rank === 3 ? 'text-amber-600' : 'text-slate-500'
                       }`}>
                         {wrd.rank === 1 ? '🥇' : wrd.rank === 2 ? '🥈' : wrd.rank === 3 ? '🥉' : `#${wrd.rank}`}
                       </span>
-                      <span className="font-bold text-slate-200">{wrd.name}</span>
+                      <span className="font-bold text-gray-900">{wrd.name}</span>
                     </div>
-                    <div className="text-center font-mono font-bold text-slate-300">{wrd.resolvedCount}</div>
+                    <div className="text-center font-mono font-bold text-gray-900">{wrd.resolvedCount}</div>
                     <div className="text-center font-bold text-emerald-400 font-mono">{wrd.compliance}</div>
                     <div className="text-right font-bold text-purple-400 font-mono">{wrd.xp} XP</div>
                   </div>
@@ -168,17 +168,18 @@ export default function Leaderboard() {
           {/* Personal balance overview */}
           <div className="p-5 rounded-2xl glass-panel-glow border-emerald-500/25 bg-slate-950/20 flex items-center justify-between">
             <div>
-              <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider block">YOUR GREEN BALANCE</span>
+              <span className="text-[9px] text-gray-900 font-bold uppercase tracking-wider block">YOUR GREEN BALANCE</span>
               <span className="text-2xl font-extrabold font-outfit text-emerald-400 mt-1 block font-mono">{currentUser.xp} XP</span>
             </div>
             <Zap className="w-8 h-8 text-emerald-400 animate-pulse" />
           </div>
 
-          <h3 className="text-lg font-bold font-outfit text-white">Merchant Rewards Store</h3>
+          <h3 className="text-lg font-bold font-outfit text-gray-900">Merchant Rewards Store</h3>
           
           {/* Rewards Lists */}
           <div className="space-y-3">
             {userRewards.map((reward) => {
+              
               const canAfford = currentUser.xp >= reward.cost;
               return (
                 <div key={reward.id} className="p-4 rounded-xl glass-panel flex flex-col justify-between gap-4">
@@ -187,23 +188,26 @@ export default function Leaderboard() {
                       {reward.icon}
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-slate-200 leading-snug">{reward.title}</h4>
-                      <p className="text-[9px] text-slate-500 font-mono font-semibold mt-0.5 uppercase">{reward.sponsor}</p>
+                      <h4 className="text-xs font-bold text-gray-900 leading-snug">{reward.title}</h4>
+                      <p className="text-[9px] text-gray-900 font-mono font-semibold mt-0.5 uppercase">{reward.sponsor}</p>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between border-t border-slate-900/60 pt-3">
                     <span className="text-xs font-bold text-emerald-400 font-mono">{reward.cost} XP</span>
                     <button
-                      onClick={() => handleClaim(reward)}
-                      className={`px-4 py-2 rounded-lg font-bold text-[10px] shadow-sm transition-all ${
-                        canAfford
-                          ? 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950 shimmer-btn'
-                          : 'bg-slate-900 text-slate-600 border border-slate-950 cursor-not-allowed'
-                      }`}
-                    >
-                      Redeem Coupon
-                    </button>
+                      
+  disabled={!canAfford}
+  onClick={() => handleClaim(reward)}
+  className={`px-4 py-2 rounded-lg font-bold text-[10px] shadow-sm transition-all ${
+    canAfford
+      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950'
+      : 'bg-gradient-to-r from-emerald-500 to-teal-500 opacity-50 text-slate-950 cursor-not-allowed'
+  }`}
+>
+  Redeem Coupon
+</button>
+                    
                   </div>
                 </div>
               );
@@ -213,7 +217,7 @@ export default function Leaderboard() {
           {/* Redeemed Codes Vault panel */}
           {myRedeemedCodes.length > 0 && (
             <div className="p-5 rounded-2xl glass-panel space-y-4">
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+              <h4 className="text-xs font-bold text-black uppercase tracking-widest flex items-center gap-1.5">
                 <Ticket className="w-4 h-4 text-emerald-400 animate-bounce" />
                 <span>My Redeemed Vouchers</span>
               </h4>
@@ -221,10 +225,10 @@ export default function Leaderboard() {
               <div className="space-y-2">
                 {myRedeemedCodes.map((code, index) => (
                   <div key={index} className="p-3 bg-slate-900/50 border border-slate-850 rounded-xl space-y-1.5 text-xs text-slate-350">
-                    <p className="font-bold text-slate-200">{code.title}</p>
+                    <p className="font-bold text-gray-900">{code.title}</p>
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">{code.code}</span>
-                      <span className="text-[9px] text-slate-500 uppercase font-mono font-bold">Unused</span>
+                      <span className="text-[9px] text-gray-900 uppercase font-mono font-bold">Unused</span>
                     </div>
                   </div>
                 ))}
