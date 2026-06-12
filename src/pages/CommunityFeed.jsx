@@ -17,7 +17,7 @@ export default function CommunityFeed() {
   const [commentInputs, setCommentInputs] = useState({});
   const [expandedComments, setExpandedComments] = useState({});
 
-  const tags = ['All', '#CleanDelhi', '#GreenSector4', '#GoGreen', '#NagarSetuVolunteers', '#Afforestation'];
+  const tags = ['All','#GreenSector4', '#GoGreen', '#NagarSetuVolunteers', '#Afforestation'];
 
   const filteredPosts = activeTag === 'All' 
     ? feedPosts 
@@ -127,14 +127,14 @@ export default function CommunityFeed() {
             </div>
 
             {/* Reward Notification Pill */}
-            {post.xpRewarded && (
+            {/* {post.xpRewarded && (
               <div className="p-3 rounded-xl bg-brand-violet/5 border border-brand-violet/10 flex items-center justify-between">
                 <span className="text-[10px] text-slate-500 font-medium">Municipal Green Endorsement</span>
                 <span className="text-xs font-bold text-brand-violet flex items-center gap-1">
                   🌱 +{post.xpRewarded} Ward XP Awarded
                 </span>
-              </div>
-            )}
+              </div> */}
+            
 
             {/* Action Bar (Likes, Salutes, Comments count) */}
             <div className="flex items-center justify-between border-t border-b border-purple-100 py-3.5 mt-4">
@@ -146,17 +146,17 @@ export default function CommunityFeed() {
                   className="flex items-center gap-2 text-xs text-slate-500 hover:text-slate-800 transition-colors"
                 >
                   <Heart className="w-4 h-4 text-rose-500 fill-rose-500/10" />
-                  <span className="font-mono">{post.likes}</span>
+                  <span className="font-mono"> upvote {post.likes}</span>
                 </button>
 
                 {/* Salute Button */}
-                <button
+                {/* <button
                   onClick={() => reactToFeedPost(post.id, 'salute')}
                   className="flex items-center gap-2 text-xs text-slate-500 hover:text-slate-800 transition-colors group"
                 >
                   <Award className="w-4 h-4 text-brand-violet group-hover:scale-110 transition-transform" />
                   <span className="font-mono">Salute {post.salutes > 0 ? `(${post.salutes})` : ''}</span>
-                </button>
+                </button> */}
               </div>
 
               {/* Comment trigger */}

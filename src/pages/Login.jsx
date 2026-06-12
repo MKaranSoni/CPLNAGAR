@@ -69,7 +69,6 @@ export default function Login() {
             />
           </div>
         </div>
-
         {/* Password Field */}
         <div>
           <div className="flex justify-between items-center mb-2">
@@ -90,7 +89,6 @@ export default function Login() {
             />
           </div>
         </div>
-
         {/* Submit */}
         <button
           type="submit"
@@ -115,7 +113,6 @@ export default function Login() {
             </div>
             <span className="text-[9px] text-slate-500 font-bold">Citizen</span>
           </button>
-
           <button
             onClick={() => handleRoleQuickLogin('volunteer')}
             className="p-2.5 rounded-xl bg-purple-50/40 hover:bg-purple-50 border border-purple-100 flex flex-col items-center gap-1.5 transition-all group shadow-soft"
@@ -135,7 +132,6 @@ export default function Login() {
             </div>
             <span className="text-[9px] text-slate-500 font-bold">Admin</span>
           </button>
-
         </div>
       </div>
 

@@ -69,15 +69,14 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F7F5FC] text-slate-700 relative overflow-hidden">
-      
+    <div  className="min-h-[80vh] bg-[#F7F5FC] text-slate-700 relative overflow-hidden">
       {/* Visual background accents */}
-      <div className="absolute top-0 inset-x-0 h-[600px] smart-city-grid opacity-30" />
+      <div className="absolute top-0 inset-x-0 h-[200px] smart-city-grid opacity-30" /> 
       <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-brand-violet/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-[25%] right-[-10%] w-[500px] h-[500px] bg-brand-purple/5 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Landing Header */}
-      <header className="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center relative z-10">
+      <header  className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-violet to-brand-purple flex items-center justify-center font-bold text-white shadow-glow-violet text-xl">
             NS
@@ -96,7 +95,7 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="max-w-5xl mx-auto px-6 pt-16 pb-20 relative z-10 text-center">
+      <section className="max-w-5xl mx-auto px-6 pt-8 pb-10 relative z-10 text-center -mt-6">
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
