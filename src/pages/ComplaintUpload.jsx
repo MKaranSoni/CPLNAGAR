@@ -22,7 +22,7 @@ export default function ComplaintUpload() {
   const [isScanning, setIsScanning] = useState(false);
   const [scanProgress, setScanProgress] = useState(0);
   const [aiAnalysisComplete, setAiAnalysisComplete] = useState(false);
-
+  const [selectedFile, setSelectedFile] = useState(null);
   // Form Fields
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -59,10 +59,10 @@ export default function ComplaintUpload() {
     //     return prev + 25;
     //   });
     // }, 400);
-  };
 
   const handleResetImage = () => {
-    setSelectedImage(null);
+    setSelectedImage(URL.createObjectURL(file));
+    setSelectedFile(file);
     setAiAnalysisComplete(false);
     setTitle('');
     setDescription('');
@@ -80,34 +80,37 @@ export default function ComplaintUpload() {
 
   try {
 
-    const complaintData = {
-      title,
-      description,
-      category,
+    const formData = new FormData();
 
-      severity: severityMap[priority],
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("latitude", latitude);
+    formData.append("longitude", longitude);
 
-      latitude,
-      longitude,
-
-      imageUrl: selectedImage
-    };
+    if (selectedFile) {
+      formData.append(
+        "image",
+        selectedFile
+      );
+    }
 
     const response =
-      await createComplaint(complaintData);
+      await createComplaint(formData);
 
     console.log(
       "Complaint Created:",
       response.data
     );
 
-    alert("Complaint Submitted Successfully");
+    alert(
+      "Complaint Submitted Successfully"
+    );
 
     navigate("/tracking");
 
   } catch (error) {
 
-    console.error("Complaint Error:", error);
+    console.error(error);
 
     alert(
       error.response?.data?.message ||
@@ -276,7 +279,8 @@ export default function ComplaintUpload() {
         </div>
 
       </div>
-    // </div>
+    </div>
               );
+            };
             
             

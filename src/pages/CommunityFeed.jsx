@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
+import { useEffect, useState } from "react";
+import { getCommunityFeed } from "../services/adminService";
 import { useCivicData } from '../hooks/useCivicData';
 import { 
   Heart, 
@@ -12,7 +14,27 @@ import {
 } from 'lucide-react';
 
 export default function CommunityFeed() {
-  const { feedPosts, reactToFeedPost, addFeedComment } = useCivicData();
+  //const { reactToFeedPost, addFeedComment } = useCivicData();
+  const { feedPosts = [], reactToFeedPost, addFeedComment } = useCivicData();
+//const [feedPosts, setFeedPosts] = useState([]);
+useEffect(() => {
+  loadFeed();
+
+  const interval = setInterval(() => {
+    loadFeed();
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, []);
+
+const loadFeed = async () => {
+  try {
+    const res = await getCommunityFeed();
+    setFeedPosts(res.data);
+  } catch (err) {
+    console.error("Feed load error:", err);
+  }
+};
   const [activeTag, setActiveTag] = useState('All');
   const [commentInputs, setCommentInputs] = useState({});
   const [expandedComments, setExpandedComments] = useState({});
@@ -174,7 +196,7 @@ export default function CommunityFeed() {
             {expandedComments[post.id] && (
               <div className="space-y-4 pt-2">
                 <div className="space-y-3">
-                  {post.comments.map((cmt, idx) => (
+                  {(post.comments || []).map((cmt, idx) => (
                     <div key={idx} className="flex gap-3 text-xs">
                       <img
                         src={cmt.avatar}

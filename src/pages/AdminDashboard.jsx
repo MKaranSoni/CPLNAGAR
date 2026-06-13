@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
-import { useCivicData } from '../hooks/useCivicData';
+import React, { useState, useEffect } from 'react';
+
+import {
+  getAdminStats,
+  getRecentComplaints
+} from '../services/adminService';
 import { 
   ShieldCheck, 
   MapPin, 
@@ -14,9 +18,32 @@ import {
 } from 'lucide-react';
 
 export default function AdminDashboard() {
-  const { complaints, adminStats, updateComplaintStatus, showToast } = useCivicData();
+  const [adminStats, setAdminStats] = useState({});
+const [complaints, setComplaints] = useState([]);
+const [loading, setLoading] = useState(true);
   const [selectedTicketId, setSelectedTicketId] = useState(complaints[0]?.id || '');
   const [hoveredHotspot, setHoveredHotspot] = useState(null);
+  useEffect(() => {
+    loadDashboard();
+  }, []);
+
+  const loadDashboard = async () => {
+    try {
+      const statsRes = await getAdminStats();
+      const complaintsRes = await getRecentComplaints();
+
+      setAdminStats(statsRes.data);
+      setComplaints(complaintsRes.data);
+    } catch (error) {
+      console.error("Dashboard Load Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading Dashboard...</div>;
+  }
 
   const activeTicket = complaints.find(t => t.id === selectedTicketId) || complaints[0];
 
@@ -51,19 +78,19 @@ export default function AdminDashboard() {
 
         <div className="p-5 rounded-2xl glass-panel">
           <span className="text-[9px] text-black font-bold uppercase tracking-widest font-mono block">RESOLVED TICKETS</span>
-          <h3 className="text-2xl font-extrabold font-outfit text-emerald-400 mt-2">{adminStats.resolvedComplaints}</h3>
-          <span className="text-[10px] text-black font-medium mt-1 block">Avg speed: {adminStats.avgResolutionTime}</span>
+          <h3 className="text-2xl font-extrabold font-outfit text-emerald-400 mt-2">{adminStats.resolved}</h3>
+          <span className="text-[10px] text-black font-medium mt-1 block">Avg speed: {"N/A"}</span>
         </div>
 
         <div className="p-5 rounded-2xl glass-panel">
           <span className="text-[9px] text-black font-bold uppercase tracking-widest font-mono block">ACTIVE IN PROCESS</span>
-          <h3 className="text-2xl font-extrabold font-outfit text-blue-400 mt-2">{adminStats.activeComplaints}</h3>
+          <h3 className="text-2xl font-extrabold font-outfit text-blue-400 mt-2">{adminStats.pending + adminStats.inProgress}</h3>
           <span className="text-[10px] text-blue-400 font-bold mt-1 block">In Dispatch: 42 teams</span>
         </div>
 
         <div className="p-5 rounded-2xl glass-panel-glow border-emerald-500/20 bg-slate-950/20">
           <span className="text-[9px] text-slate-450 font-bold uppercase tracking-widest font-mono block">AI DUPLICATES FILTERED</span>
-          <h3 className="text-2xl font-extrabold font-outfit text-lightblue mt-2">{adminStats.spamFilteredComplaints}</h3>
+          <h3 className="text-2xl font-extrabold font-outfit text-lightblue mt-2">{0}</h3>
           <span className="text-[10px] text-emerald-400 font-bold mt-1 block">🛡️ 100% spam-defense rating</span>
         </div>
 
@@ -99,8 +126,8 @@ export default function AdminDashboard() {
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-[9px] font-mono font-bold text-slate-500">{t.id}</span>
                     <span className={`text-[8px] font-mono font-bold px-1.5 py-0.2 rounded uppercase ${
-                      t.priority === 'Critical' ? 'bg-red-500/20 text-red-400' : 'bg-slate-800 text-slate-400'
-                    }`}>{t.priority}</span>
+                      t.severity === 'CRITICAL' ? 'bg-red-500/20 text-red-400' : 'bg-slate-800 text-slate-400'
+                    }`}>{t.severity}</span>
                   </div>
                   <h4 className="text-xs font-bold text-black line-clamp-1 leading-snug">{t.title}</h4>
                 </button>
@@ -123,15 +150,15 @@ export default function AdminDashboard() {
                     {/* Category prediction confidence */}
                     <div className="p-3 bg-slate-950/60 border border-slate-900 rounded-xl">
                       <span className="text-[8px] text-white font-bold uppercase tracking-wider block">AI CATEGORY CONFIDENCE</span>
-                      <span className="text-sm font-bold text-emerald-400 font-mono block mt-1">{activeTicket.aiMetrics.categoryConfidence}</span>
+                      <span className="text-sm font-bold text-emerald-400 font-mono block mt-1">{activeTicket.authenticityPercentage || 0}%</span>
                       <span className="text-[9px] text-white block mt-0.5">{activeTicket.category}</span>
                     </div>
 
                     {/* Duplicate checker metric */}
                     <div className="p-3 bg-slate-950/60 border border-slate-900 rounded-xl">
                       <span className="text-[8px]  text-white font-bold uppercase tracking-wider block">DUPLICATE INDEX</span>
-                      <span className="text-sm font-bold text-white font-mono block mt-1">{activeTicket.aiMetrics.isLegit}</span>
-                      <span className="text-[9px]  text-white  block mt-0.5 truncate">{activeTicket.aiMetrics.duplicateCheck}</span>
+                      <span className="text-sm font-bold text-white font-mono block mt-1">{activeTicket.suspicious ? "Suspicious" : "Legitimate"}</span>
+                      <span className="text-[9px]  text-white  block mt-0.5 truncate">{activeTicket.duplicateImage ? "Duplicate Found" : "No Duplicate"}</span>
                     </div>
 
                   </div>
@@ -141,7 +168,7 @@ export default function AdminDashboard() {
                     <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="font-bold  text-black">EXIF Geolocation Coordinates</p>
-                      <p className="mt-0.5">{activeTicket.locationName}</p>
+                      <p className="mt-0.5">{`${activeTicket.latitude}, ${activeTicket.longitude}`}</p>
                     </div>
                   </div>
                 </div>
