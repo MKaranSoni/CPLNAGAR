@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useCivicData } from '../hooks/useCivicData';
-import { getMyComplaints, updateComplaintStatus as backendUpdateComplaintStatus } from '../services/complaintservice';
-import { 
-  CheckCircle2, 
-  Clock, 
-  User, 
-  MapPin, 
-  QrCode, 
-  Send, 
-  AlertCircle, 
+import { getMyComplaints, updateComplaintStatus as backendUpdateComplaintStatus } from '../services/complaintService';
+import {
+  CheckCircle2,
+  Clock,
+  User,
+  MapPin,
+  QrCode,
+  Send,
+  AlertCircle,
   MessageSquare,
   Sparkles,
   Award
@@ -98,7 +98,7 @@ export default function ComplaintTracking() {
       } else if (activeComplaint.category === 'Road & Infrastructure') {
         replyText = "The road maintenance roller has been scheduled. Ward 4 maintenance department has logged your coordinates.";
       }
-      
+
       const replyMsg = {
         sender: "volunteer",
         text: replyText,
@@ -109,7 +109,7 @@ export default function ComplaintTracking() {
         ...prev,
         [selectedCompId]: [...(prev[selectedCompId] || []), replyMsg]
       }));
-      
+
       showToast("Assigned volunteer sent a message!", "info");
     }, 1500);
   };
@@ -123,8 +123,8 @@ export default function ComplaintTracking() {
 
     // Trigger state change in context
     updateComplaintStatus(
-      activeComplaint.id, 
-      'Resolved', 
+      activeComplaint.id,
+      'Resolved',
       "Verified on-site by resident scan. Green XP rewarded."
     );
 
@@ -134,7 +134,7 @@ export default function ComplaintTracking() {
       text: "On-site audit completed! Resident scanned verified QR Code. Status marked RESOLVED.",
       time: "Just now"
     };
-    
+
     setChats(prev => ({
       ...prev,
       [selectedCompId]: [...(prev[selectedCompId] || []), qrNotif]
@@ -164,7 +164,7 @@ export default function ComplaintTracking() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+
         {/* Left Side: Complaints Selection Panel */}
         <div className="lg:col-span-1 space-y-4">
           <h3 className="text-sm font-bold text-themeLight-textSub uppercase tracking-widest">Active Tickets</h3>
@@ -173,18 +173,16 @@ export default function ComplaintTracking() {
               <button
                 key={c.id}
                 onClick={() => setSelectedCompId(c.id)}
-                className={`w-full text-left p-4 rounded-xl transition-all border shadow-soft ${
-                  selectedCompId === c.id 
-                    ? 'glass-panel-glow border-brand-violet/35 bg-purple-50/40' 
+                className={`w-full text-left p-4 rounded-xl transition-all border shadow-soft ${selectedCompId === c.id
+                    ? 'glass-panel-glow border-brand-violet/35 bg-purple-50/40'
                     : 'glass-panel hover:bg-purple-50/30 border-purple-100'
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-start mb-2">
                   <span className="text-[10px] bg-slate-900/5 px-2 py-0.5 rounded font-mono font-bold text-slate-500 border border-slate-900/5">{c.id}</span>
-                  <span className={`text-[9px] font-bold font-mono px-2 py-0.5 rounded uppercase ${
-                    c.status === 'Resolved' ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/15' :
-                    c.status === 'In Progress' ? 'bg-blue-500/10 text-blue-600 border border-blue-500/15' : 'bg-slate-100 text-slate-500'
-                  }`}>{c.status}</span>
+                  <span className={`text-[9px] font-bold font-mono px-2 py-0.5 rounded uppercase ${c.status === 'Resolved' ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/15' :
+                      c.status === 'In Progress' ? 'bg-blue-500/10 text-blue-600 border border-blue-500/15' : 'bg-slate-100 text-slate-500'
+                    }`}>{c.status}</span>
                 </div>
                 <h4 className="text-xs font-bold text-slate-800 dark:text-slate-100 line-clamp-1 leading-snug">{c.title}</h4>
                 <p className="text-[10px] text-slate-500 truncate mt-1">{c.locationName.split(',')[0]}</p>
@@ -196,25 +194,24 @@ export default function ComplaintTracking() {
         {/* Right Side: Step timelines, Chat, QR Auditor */}
         {activeComplaint ? (
           <div className="lg:col-span-2 space-y-6">
-            
+
             {/* Step-by-step progress pipeline visual */}
             <div className="p-6 rounded-3xl glass-panel space-y-6 bg-white/70 dark:bg-slate-900/70 shadow-soft">
               <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest font-mono">Status Progression Pipeline</h4>
-              
+
               <div className="flex flex-col sm:flex-row justify-between items-center gap-6 relative">
                 {/* Connection line */}
                 <div className="hidden sm:block absolute top-[14px] left-[5%] right-[5%] h-0.5 bg-purple-100 z-0" />
-                
+
                 {stages.map((stg, idx) => {
                   const isDone = idx <= activeStageIndex;
                   const isCurrent = idx === activeStageIndex;
                   return (
                     <div key={stg.label} className="flex sm:flex-col items-center gap-3 relative z-10 w-full sm:w-auto text-left sm:text-center">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs border ${
-                        isDone 
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs border ${isDone
                           ? 'bg-brand-violet text-white border-brand-violet/50 shadow-glow-violet'
                           : 'bg-white dark:bg-slate-900 text-slate-400 border-purple-100 shadow-soft'
-                      }`}>
+                        }`}>
                         {isDone ? <CheckCircle2 className="w-5 h-5 text-white" /> : idx + 1}
                       </div>
                       <div>
@@ -229,19 +226,19 @@ export default function ComplaintTracking() {
 
             {/* Split layout: Ticket Details + QR auditor on left, chatbox on right */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              
+
               {/* Left Box: Info details and QR code auditor */}
               <div className="space-y-6 flex flex-col">
-                
+
                 {/* Details card */}
                 <div className="p-5 rounded-3xl glass-panel space-y-4 flex-1 bg-white/70 dark:bg-slate-900/70 shadow-soft">
                   <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest font-mono">Ticket Specification</h4>
                   <img src={activeComplaint.photoUrl} alt="Complaint source" className="w-full h-28 object-cover rounded-xl border border-purple-100 shadow-soft" />
-                  
+
                   <div className="space-y-2 text-xs">
                     <h5 className="font-bold text-slate-800 dark:text-slate-100 leading-snug">{activeComplaint.title}</h5>
                     <p className="text-[11px] text-slate-500 leading-relaxed">{activeComplaint.description}</p>
-                    
+
                     <div className="pt-3 border-t border-purple-100/50 space-y-2 font-mono text-[10px] text-slate-500">
                       <div className="flex justify-between">
                         <span>CATEGORY:</span>
@@ -283,13 +280,12 @@ export default function ComplaintTracking() {
                   <button
                     onClick={handleVerifyQR}
                     disabled={activeComplaint.status === 'Resolved'}
-                    className={`w-full py-2.5 rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 ${
-                      activeComplaint.status !== 'Resolved'
+                    className={`w-full py-2.5 rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 ${activeComplaint.status !== 'Resolved'
                         ? 'bg-gradient-to-r from-brand-violet to-brand-purple text-white shadow-glow-violet hover:opacity-95 shimmer-btn cursor-pointer'
                         : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
-                    }`}
+                      }`}
                   >
-                    <CheckCircle2 className="w-4 h-4" /> 
+                    <CheckCircle2 className="w-4 h-4" />
                     {activeComplaint.status === 'Resolved' ? 'Verified & Completed' : 'Simulate QR Audit scan'}
                   </button>
                 </div>
@@ -298,7 +294,7 @@ export default function ComplaintTracking() {
 
               {/* Right Box: Chatbox communication */}
               <div className="p-5 rounded-3xl glass-panel flex flex-col justify-between h-[480px] bg-white/70 dark:bg-slate-900/70 shadow-soft">
-                
+
                 {/* Chat Header */}
                 <div className="flex items-center justify-between border-b border-purple-100 pb-3 mb-3">
                   <div className="flex items-center gap-2">
@@ -315,7 +311,7 @@ export default function ComplaintTracking() {
                   {(chats[activeComplaint.id] || []).map((msg, index) => {
                     const isSystem = msg.sender === 'system';
                     const isMe = msg.sender === 'citizen';
-                    
+
                     if (isSystem) {
                       return (
                         <div key={index} className="p-2 bg-brand-violet/5 border border-brand-violet/10 text-brand-violet rounded-lg text-[9px] font-mono leading-relaxed text-center">
@@ -326,11 +322,10 @@ export default function ComplaintTracking() {
 
                     return (
                       <div key={index} className={`flex flex-col max-w-[80%] ${isMe ? 'ml-auto items-end' : 'mr-auto items-start'}`}>
-                        <div className={`p-3 rounded-2xl ${
-                          isMe 
-                            ? 'bg-gradient-to-tr from-brand-violet to-brand-purple text-white rounded-tr-none shadow-soft' 
+                        <div className={`p-3 rounded-2xl ${isMe
+                            ? 'bg-gradient-to-tr from-brand-violet to-brand-purple text-white rounded-tr-none shadow-soft'
                             : 'bg-purple-50/50 border border-purple-100 text-slate-800 dark:text-slate-100 rounded-tl-none shadow-soft'
-                        }`}>
+                          }`}>
                           <p className="leading-relaxed font-medium">{msg.text}</p>
                         </div>
                         <span className="text-[8px] text-slate-400 mt-1 px-1 font-mono font-medium">{msg.time}</span>
