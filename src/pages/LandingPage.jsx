@@ -69,7 +69,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div  className="min-h-[80vh] bg-[#F7F5FC] text-slate-700 relative overflow-hidden">
+    <div  className="min-h-screen bg-[#F7F5FC] text-slate-700 relative overflow-hidden">
       {/* Visual background accents */}
       <div className="absolute top-0 inset-x-0 h-[200px] smart-city-grid opacity-30" /> 
       <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-brand-violet/5 rounded-full blur-[140px] pointer-events-none" />
@@ -82,13 +82,13 @@ export default function LandingPage() {
             NS
           </div>
           <div>
-            <h1 className="text-xl font-bold font-outfit text-slate-800 leading-none">NagarSetu</h1>
+            <h1 className="text-xl font-bold font-outfit text-slate-800 dark:text-slate-100 leading-none">NagarSetu</h1>
             <span className="text-[10px] text-brand-violet font-semibold tracking-widest uppercase">Smart Civic Alliance</span>
           </div>
         </div>
         <button
           onClick={() => navigate('/login')}
-          className="px-5 py-2.5 rounded-xl bg-white border border-purple-100 text-xs font-bold text-slate-650 hover:text-slate-900 hover:bg-purple-50/50 transition-all shadow-soft"
+          className="px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-purple-100 text-xs font-bold text-slate-650 hover:text-slate-900 hover:bg-purple-50/50 transition-all shadow-soft"
         >
           Sign In
         </button>
@@ -132,7 +132,7 @@ export default function LandingPage() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <button
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate('/register')}
            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-violet to-brand-purple hover:from-brand-violet/90 hover:to-brand-purple/90 text-white font-bold text-xs shadow-glow-violet transition-all flex items-center justify-center gap-2 shimmer-btn"
           >
             Join as Citizen Volunteer
@@ -142,7 +142,7 @@ export default function LandingPage() {
       {/* How It Works - Visual Lifecycle Node */}
       <section className="max-w-5xl mx-auto px-6 py-20 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-4xl font-bold font-outfit text-slate-800 mb-4">The Civic Lifecycle</h2>
+          <h2 className="text-2xl sm:text-4xl font-bold font-outfit text-slate-800 dark:text-slate-100 mb-4">The Civic Lifecycle</h2>
           <p className="text-xs text-slate-500 max-w-lg mx-auto">See how NagarSetu bridges the gap seamlessly between complaints, algorithms, and active solutions.</p>
         </div>
 
@@ -156,7 +156,7 @@ export default function LandingPage() {
             <div className="w-12 h-12 rounded-xl bg-brand-violet/10 border border-brand-violet/20 flex items-center justify-center mb-4">
               <span className="text-lg font-bold font-mono text-brand-violet">01</span>
             </div>
-            <h4 className="text-xs font-bold font-outfit text-slate-800 mb-2">Citizen Reports</h4>
+            <h4 className="text-xs font-bold font-outfit text-slate-800 dark:text-slate-100 mb-2">Citizen Reports</h4>
             <p className="text-[11px] text-slate-500">Citizen snaps a photo of public garbage, potholes, or light outages on our portal.</p>
           </div>
 
@@ -165,7 +165,7 @@ export default function LandingPage() {
             <div className="w-12 h-12 rounded-xl bg-brand-purple/10 border border-brand-purple/20 flex items-center justify-center mb-4">
               <span className="text-lg font-bold font-mono text-brand-purple">02</span>
             </div>
-            <h4 className="text-xs font-bold font-outfit text-slate-800 mb-2">AI Triage & AQI</h4>
+            <h4 className="text-xs font-bold font-outfit text-slate-800 dark:text-slate-100 mb-2">AI Triage & AQI</h4>
             <p className="text-[11px] text-slate-500">AI screen duplicates, tags location coordinates, and cross-references active atmospheric AQIs.</p>
           </div>
 
@@ -174,7 +174,7 @@ export default function LandingPage() {
             <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4">
               <span className="text-lg font-bold font-mono text-indigo-600">03</span>
             </div>
-            <h4 className="text-xs font-bold font-outfit text-slate-800 mb-2">Volunteers Dispatched</h4>
+            <h4 className="text-xs font-bold font-outfit text-slate-800 dark:text-slate-100 mb-2">Volunteers Dispatched</h4>
             <p className="text-[11px] text-slate-500">Assigned local volunteer crews and municipal wards receive notifications to clear the issue.</p>
           </div>
 
@@ -183,7 +183,7 @@ export default function LandingPage() {
             <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4">
               <span className="text-lg font-bold font-mono text-orange-500">04</span>
             </div>
-            <h4 className="text-xs font-bold font-outfit text-slate-800 mb-2">Resolved + XP</h4>
+            <h4 className="text-xs font-bold font-outfit text-slate-800 dark:text-slate-100 mb-2">Resolved + XP</h4>
             <p className="text-[11px] text-slate-500">Status gets updated via on-site QR. Citizen and Volunteers claim green XP rewards!</p>
           </div>
 
@@ -193,7 +193,7 @@ export default function LandingPage() {
       {/* Feature Grid Showcase */}
       <section className="max-w-5xl mx-auto px-6 py-12 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-4xl font-bold font-outfit text-slate-800 mb-4">Robust Features for Active Change</h2>
+          <h2 className="text-2xl sm:text-4xl font-bold font-outfit text-slate-800 dark:text-slate-100 mb-4">Robust Features for Active Change</h2>
           <p className="text-xs text-slate-500 max-w-lg mx-auto">Explore the modules designed to streamline urban cleanliness, civic accountability, and gamified engagement.</p>
         </div>
 
@@ -206,11 +206,11 @@ export default function LandingPage() {
                 whileHover={{ y: -4 }}
                 className={`p-8 rounded-3xl bg-gradient-to-br ${feature.color} border border-purple-100/50 shadow-soft transition-all duration-300 flex items-start gap-4`}
               >
-                <div className="p-3 bg-white rounded-xl border border-purple-100 text-brand-violet flex-shrink-0 shadow-soft">
+                <div className="p-3 bg-white dark:bg-slate-900 rounded-xl border border-purple-100 text-brand-violet flex-shrink-0 shadow-soft">
                   <IconComponent className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold font-outfit text-slate-800 mb-2">{feature.title}</h3>
+                  <h3 className="text-base font-bold font-outfit text-slate-800 dark:text-slate-100 mb-2">{feature.title}</h3>
                   <p className="text-xs text-slate-500 leading-relaxed">{feature.desc}</p>
                 </div>
               </motion.div>
@@ -225,7 +225,7 @@ export default function LandingPage() {
           <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit text-slate-855 mb-4">Ready to Transform Your Ward?</h2>
           <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto mb-8 leading-relaxed">Join thousands of citizens cleaning their streets, tracking potholes, and collaborating directly with ward commanders.</p>
           <button
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/register')}
             className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-violet to-brand-purple text-white font-bold text-xs shadow-glow-violet hover:opacity-90 transition-all inline-flex items-center gap-2"
           >
             Get Started Now <ArrowRight className="w-4 h-4 text-white" />

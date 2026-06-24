@@ -19,3 +19,7 @@ export const getTopComplaints = async (limit = 10) => {
 export const getRecentComplaints = async (limit = 10) => {
   return await api.get(`/api/admin/complaints/recent?limit=${limit}`);
 };
+
+export const requestComplaintClosure = async (id) => {
+  return await api.post(`/api/admin/complaints/${id}/request-closure`);
+};

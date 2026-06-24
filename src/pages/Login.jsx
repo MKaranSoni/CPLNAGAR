@@ -8,6 +8,7 @@ export default function Login() {
   const { switchUserRole } = useCivicData();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedRole, setSelectedRole] = useState(null);
   const navigate = useNavigate();
  
 
@@ -24,30 +25,40 @@ export default function Login() {
     if (!token) throw new Error("Token missing");
 
     localStorage.setItem("token", token);
+    localStorage.setItem("userName", response.data?.name);
+    localStorage.setItem("userRole", response.data?.role);
 
-    switchUserRole("citizen");
+    const userRole = response.data?.role?.toLowerCase() || "citizen";
+    switchUserRole(userRole);
 
-    navigate("/dashboard");
+    if (userRole === 'admin') {
+      navigate("/admin");
+    } else {
+      navigate("/dashboard");
+    }
 
   } catch (error) {
     console.error(error);
-    alert(error.response?.data || "Login Failed");
+    const errData = error.response?.data;
+    const errorMsg = errData?.message || (typeof errData === 'string' ? errData : "Login Failed");
+    alert(errorMsg);
   }
 };
 
   const handleRoleQuickLogin = (role) => {
-    switchUserRole(role);
-    if (role === 'admin') {
-      navigate('/admin');
-    } else {
-      navigate('/dashboard');
+    setSelectedRole(role);
+    const emailInput = document.querySelector('input[type="email"]');
+    if (emailInput) {
+      emailInput.focus();
     }
   };
 
   return (
-    <div className="glass-panel p-8 rounded-3xl border border-white/60 shadow-premium relative bg-white/70">
+    <div className="glass-panel p-8 rounded-3xl border border-white/60 shadow-premium relative bg-white/70 dark:bg-slate-900/70">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold font-outfit text-slate-800">Welcome Back</h2>
+        <h2 className="text-2xl font-bold font-outfit text-slate-800 dark:text-slate-100">
+          {selectedRole ? `${selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1)} Login` : 'Welcome Back'}
+        </h2>
         <p className="text-xs text-slate-500 mt-1">Access the NagarSetu Smart-City hub</p>
       </div>
 
@@ -65,7 +76,7 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com"
               required
-              className="w-full bg-white/80 border border-purple-100 text-slate-800 pl-10 pr-4 py-3 rounded-xl text-xs focus:outline-none focus:border-brand-violet/50 transition-colors placeholder:text-slate-400 shadow-soft"
+              className="w-full bg-white/80 dark:bg-slate-900/80 border border-purple-100 text-slate-800 dark:text-slate-100 pl-10 pr-4 py-3 rounded-xl text-xs focus:outline-none focus:border-brand-violet/50 transition-colors placeholder:text-slate-400 shadow-soft"
             />
           </div>
         </div>
@@ -85,7 +96,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              className="w-full bg-white/80 border border-purple-100 text-slate-800 pl-10 pr-4 py-3 rounded-xl text-xs focus:outline-none focus:border-brand-violet/50 transition-colors placeholder:text-slate-400 shadow-soft"
+              className="w-full bg-white/80 dark:bg-slate-900/80 border border-purple-100 text-slate-800 dark:text-slate-100 pl-10 pr-4 py-3 rounded-xl text-xs focus:outline-none focus:border-brand-violet/50 transition-colors placeholder:text-slate-400 shadow-soft"
             />
           </div>
         </div>
@@ -98,15 +109,15 @@ export default function Login() {
         </button>
       </form>
 
-      {/* Simulator Portal Login Section */}
+      {/* Role Selection Section */}
       <div className="mt-8 pt-6 border-t border-purple-100/50">
-        <p className="text-[10px] font-bold text-slate-450 uppercase tracking-widest text-center mb-4 font-mono">Quick Developer Access</p>
+        <p className="text-[10px] font-bold text-slate-450 uppercase tracking-widest text-center mb-4 font-mono">Select Role to Login</p>
         
         <div className="grid grid-cols-3 gap-2">
           
           <button
             onClick={() => handleRoleQuickLogin('citizen')}
-            className="p-2.5 rounded-xl bg-purple-50/40 hover:bg-purple-50 border border-purple-100 flex flex-col items-center gap-1.5 transition-all group shadow-soft"
+            className={`p-2.5 rounded-xl border flex flex-col items-center gap-1.5 transition-all group shadow-soft ${selectedRole === 'citizen' ? 'bg-purple-100 border-brand-violet' : 'bg-purple-50/40 hover:bg-purple-50 border-purple-100'}`}
           >
             <div className="w-7 h-7 rounded-lg bg-brand-violet/10 border border-brand-violet/20 flex items-center justify-center text-brand-violet group-hover:bg-brand-violet/20 transition-all">
               <User className="w-3.5 h-3.5" />
@@ -115,7 +126,7 @@ export default function Login() {
           </button>
           <button
             onClick={() => handleRoleQuickLogin('volunteer')}
-            className="p-2.5 rounded-xl bg-purple-50/40 hover:bg-purple-50 border border-purple-100 flex flex-col items-center gap-1.5 transition-all group shadow-soft"
+            className={`p-2.5 rounded-xl border flex flex-col items-center gap-1.5 transition-all group shadow-soft ${selectedRole === 'volunteer' ? 'bg-purple-100 border-brand-purple' : 'bg-purple-50/40 hover:bg-purple-50 border-purple-100'}`}
           >
             <div className="w-7 h-7 rounded-lg bg-brand-purple/10 border border-brand-purple/20 flex items-center justify-center text-brand-purple group-hover:bg-brand-purple/20 transition-all">
               <Sparkles className="w-3.5 h-3.5" />
@@ -125,7 +136,7 @@ export default function Login() {
 
           <button
             onClick={() => handleRoleQuickLogin('admin')}
-            className="p-2.5 rounded-xl bg-purple-50/40 hover:bg-purple-50 border border-purple-100 flex flex-col items-center gap-1.5 transition-all group shadow-soft"
+            className={`p-2.5 rounded-xl border flex flex-col items-center gap-1.5 transition-all group shadow-soft ${selectedRole === 'admin' ? 'bg-purple-100 border-indigo-500' : 'bg-purple-50/40 hover:bg-purple-50 border-purple-100'}`}
           >
             <div className="w-7 h-7 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-500/20 transition-all">
               <ShieldCheck className="w-3.5 h-3.5" />

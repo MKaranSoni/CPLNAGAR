@@ -50,8 +50,8 @@
 //     <div className="space-y-8">
 //       {/* Title */}
 //       <div>
-//         <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-black">Volunteer Circles & Drives</h2>
-//         <p className="text-xs text-black mt-1">Enroll in localized ecological tasks, join regional cleanup squads, and earns bonus civic XP.</p>
+//         <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-black dark:text-white">Volunteer Circles & Drives</h2>
+//         <p className="text-xs text-black dark:text-white mt-1">Enroll in localized ecological tasks, join regional cleanup squads, and earns bonus civic XP.</p>
 //       </div>
 
 //       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -59,7 +59,7 @@
 //         {/* Left Side: Upcoming Weekend Drives */}
 //         <div className="lg:col-span-2 space-y-6">
 //           <div className="flex justify-between items-center">
-//             <h3 className="text-lg font-bold font-outfit text-black">Weekend Action Campaigns</h3>
+//             <h3 className="text-lg font-bold font-outfit text-black dark:text-white">Weekend Action Campaigns</h3>
 //             <span className="text-[10px] bg-emerald-500/10 text-emerald-400 font-mono font-bold px-2 py-0.5 rounded uppercase tracking-wider">Active schedules</span>
 //           </div>
 
@@ -72,13 +72,13 @@
 //                     {drv.avatar}
 //                   </div>
 //                   <div>
-//                     <h4 className="text-sm font-bold text-black leading-snug">{drv.title}</h4>
+//                     <h4 className="text-sm font-bold text-black dark:text-white leading-snug">{drv.title}</h4>
 //                     <p className="text-xs text-emerald-400 font-semibold mt-1 flex items-center gap-1">
 //                       <HeartHandshake className="w-3.5 h-3.5 text-emerald-400" />
 //                       {drv.group}
 //                     </p>
 
-//                     <div className="mt-3 space-y-1.5 text-xs text-black">
+//                     <div className="mt-3 space-y-1.5 text-xs text-black dark:text-white">
 //                       <p className="flex items-center gap-1.5">
 //                         <Calendar className="w-3.5 h-3.5 text-slate-500" />
 //                         {drv.date}
@@ -90,8 +90,8 @@
 //                     </div>
 
 //                     {drv.goal && (
-//                       <div className="mt-3 p-2 bg-slate-900/40 rounded-lg text-[10px] border border-slate-900 text-black">
-//                         <span className="font-bold text-black uppercase font-mono tracking-wider text-[8px] block mb-0.5">TARGET GOAL:</span>
+//                       <div className="mt-3 p-2 bg-slate-900/40 rounded-lg text-[10px] border border-slate-900 text-black dark:text-white">
+//                         <span className="font-bold text-black dark:text-white uppercase font-mono tracking-wider text-[8px] block mb-0.5">TARGET GOAL:</span>
 //                         {drv.goal}
 //                       </div>
 //                     )}
@@ -100,8 +100,8 @@
 
 //                 <div className="flex flex-col justify-between items-end gap-4 min-w-[130px] border-t md:border-t-0 border-slate-900/60 pt-4 md:pt-0">
 //                   <div className="text-right">
-//                     <span className="text-[10px] text-black block uppercase font-mono tracking-widest leading-none">Registered</span>
-//                     <span className="text-sm font-bold text-black mt-1 block font-mono">{drv.volunteersCount} Active</span>
+//                     <span className="text-[10px] text-black dark:text-white block uppercase font-mono tracking-widest leading-none">Registered</span>
+//                     <span className="text-sm font-bold text-black dark:text-white mt-1 block font-mono">{drv.volunteersCount} Active</span>
 //                   </div>
 
 //                   <button
@@ -131,7 +131,7 @@
 
 //         {/* Right Side: Volunteer Circles (Permanent Groups) */}
 //         <div className="space-y-6">
-//           <h3 className="text-lg font-bold font-outfit text-black">Permanent Circles</h3>
+//           <h3 className="text-lg font-bold font-outfit text-black dark:text-white">Permanent Circles</h3>
 //           <div className="space-y-4">
 //             {volunteerGroups.map((grp) => (
 //               <div key={grp.id} className="p-5 rounded-2xl glass-panel space-y-4">
@@ -141,16 +141,16 @@
 //                     {grp.avatar}
 //                   </div>
 //                   <div>
-//                     <h4 className="text-xs font-bold text-black leading-snug">{grp.name}</h4>
-//                     <span className="text-[9px] text-black font-mono uppercase tracking-wider">{grp.city}</span>
+//                     <h4 className="text-xs font-bold text-black dark:text-white leading-snug">{grp.name}</h4>
+//                     <span className="text-[9px] text-black dark:text-white font-mono uppercase tracking-wider">{grp.city}</span>
 //                   </div>
 //                 </div>
 
-//                 <p className="text-xs text-black leading-relaxed">{grp.description}</p>
+//                 <p className="text-xs text-black dark:text-white leading-relaxed">{grp.description}</p>
 
 //                 <div className="flex items-center justify-between border-t border-slate-900/60 pt-3 text-[10px] text-slate-400 font-mono">
 //                   <span>MEMBERS:</span>
-//                   <span className=" text-black  font-bold">{grp.members} Registered</span>
+//                   <span className=" text-black dark:text-white  font-bold">{grp.members} Registered</span>
 //                 </div>
 
 //                 <button

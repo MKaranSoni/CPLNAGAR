@@ -6,9 +6,6 @@ export const mockUsers = {
     avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80",
     role: "citizen",
     level: 4,
-    xp: 2450,
-    xpToNextLevel: 3000,
-    streak: 8,
     badges: [
       { id: "b1", title: "Pothole Patrol", icon: "🛠️", desc: "Reported 5+ public road safety hazards." },
       { id: "b2", title: "Clean Ambassador", icon: "🌱", desc: "Participated in 3 consecutive cleanup drives." },
@@ -24,9 +21,6 @@ export const mockUsers = {
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
     role: "volunteer",
     level: 7,
-    xp: 6800,
-    xpToNextLevel: 8000,
-    streak: 15,
     badges: [
       { id: "v1", title: "Cleanup Master", icon: "🧹", desc: "Helped clean up 10+ major zones." },
       { id: "v2", title: "Ward Commander", icon: "👑", desc: "Assigned lead on 3 neighborhood cleanup projects." }
@@ -56,7 +50,6 @@ export const mockComplaints = [
     locationName: "Sector 4 Main Market, Near Mother Dairy, New Delhi",
     citizenName: "Aarav Sharma",
     assignedVolunteer: "Rahul Verma",
-    xpReward: 250,
     likes: 42,
     commentsCount: 12,
     createdAt: "2026-05-22T08:30:00Z",
@@ -87,7 +80,6 @@ export const mockComplaints = [
     locationName: "Outer Ring Road Exit, Near Metro Pillar 114, New Delhi",
     citizenName: "Priya Patel",
     assignedVolunteer: "Unassigned",
-    xpReward: 350,
     likes: 114,
     commentsCount: 28,
     createdAt: "2026-05-23T11:15:00Z",
@@ -117,7 +109,6 @@ export const mockComplaints = [
     locationName: "Sector 12 Public Park, Inner Jogging Track, New Delhi",
     citizenName: "Amit Singh",
     assignedVolunteer: "Vikram Sen",
-    xpReward: 150,
     likes: 18,
     commentsCount: 3,
     createdAt: "2026-05-18T19:40:00Z",
@@ -149,7 +140,6 @@ export const mockComplaints = [
     locationName: "Main Road Intersection, Ward 7, New Delhi",
     citizenName: "Sneha Reddy",
     assignedVolunteer: "Unassigned",
-    xpReward: 200,
     likes: 56,
     commentsCount: 9,
     createdAt: "2026-05-24T06:10:00Z",
@@ -186,7 +176,6 @@ export const mockFeedPosts = [
       { name: "Meera Nair", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80", text: "Fabulous work! Joining the next cleanup drive this weekend.", time: "1h ago" }
     ],
     shares: 16,
-    xpRewarded: 500,
     tags: ["#GreenSector4", "#CleanDelhi", "#NagarSetuVolunteers"],
     time: "4 hours ago"
   },
@@ -206,7 +195,6 @@ export const mockFeedPosts = [
       { name: "Dr. Sandeep Goel", avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80", text: "Excellent initiative by Ward 12. The Municipal Corporation will support you with tree guards next week.", time: "5h ago" }
     ],
     shares: 34,
-    xpRewarded: 800,
     tags: ["#GoGreen", "#Afforestation", "#SmartCities"],
     time: "8 hours ago"
   }
@@ -214,17 +202,17 @@ export const mockFeedPosts = [
 
 export const mockLeaderboard = {
   citizens: [
-    { rank: 1, name: "Sneha Reddy", xp: 4890, level: 7, resolved: 28, streak: 12, avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" },
-    { rank: 2, name: "Vikram Malhotra", xp: 4210, level: 6, resolved: 24, streak: 9, avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" },
-    { rank: 3, name: "Kunal Kapoor", xp: 3950, level: 5, resolved: 19, streak: 14, avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80" },
-    { rank: 4, name: "Anjali Gupta", xp: 3400, level: 5, resolved: 17, streak: 5, avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80" },
-    { rank: 12, name: "Aarav Sharma (You)", xp: 2450, level: 4, resolved: 14, streak: 8, avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80" }
+    { rank: 1, name: "Sneha Reddy", level: 7, resolved: 28, avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" },
+    { rank: 2, name: "Vikram Malhotra", level: 6, resolved: 24, avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" },
+    { rank: 3, name: "Kunal Kapoor", level: 5, resolved: 19, avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80" },
+    { rank: 4, name: "Anjali Gupta", level: 5, resolved: 17, avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80" },
+    { rank: 12, name: "Aarav Sharma (You)", level: 4, resolved: 14, avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80" }
   ],
   wards: [
-    { rank: 1, name: "Ward 12 - Vasant Kunj", xp: 45200, compliance: "96.4%", resolvedCount: 310 },
-    { rank: 2, name: "Ward 4 - Dwarka", xp: 38900, compliance: "92.1%", resolvedCount: 245 },
-    { rank: 3, name: "Ward 9 - Saket", xp: 32400, compliance: "89.5%", resolvedCount: 190 },
-    { rank: 4, name: "Ward 15 - Rohini", xp: 29800, compliance: "88.2%", resolvedCount: 162 }
+    { rank: 1, name: "Ward 12 - Vasant Kunj", compliance: "96.4%", resolvedCount: 310 },
+    { rank: 2, name: "Ward 4 - Dwarka", compliance: "92.1%", resolvedCount: 245 },
+    { rank: 3, name: "Ward 9 - Saket", compliance: "89.5%", resolvedCount: 190 },
+    { rank: 4, name: "Ward 15 - Rohini", compliance: "88.2%", resolvedCount: 162 }
   ],
   volunteers: [
     { rank: 1, name: "Vikram Sen", solvedCount: 52, score: 98, level: 8, avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150&auto=format&fit=crop&q=80" },

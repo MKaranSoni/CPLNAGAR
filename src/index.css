@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 
+@import "leaflet/dist/leaflet.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    background-color: #F7F5FC;
-    color: #645B7E;
+    @apply bg-[#F7F5FC] text-[#645B7E] dark:bg-slate-950 dark:text-slate-300 transition-colors duration-300;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
-    color: #2E2543;
+    @apply text-[#2E2543] dark:text-slate-100 transition-colors duration-300;
   }
 }
 

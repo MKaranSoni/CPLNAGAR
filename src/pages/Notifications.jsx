@@ -47,11 +47,9 @@ export default function Notifications() {
                 <div className="flex-shrink-0 mt-0.5">
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center border ${
                     notif.type === 'status' ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' :
-                    notif.type === 'streak' ? 'bg-orange-500/10 border-orange-500/20 text-orange-400' :
                     'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
                   }`}>
                     {notif.type === 'status' ? <ShieldAlert className="w-4 h-4" /> :
-                     notif.type === 'streak' ? <Trash2 className="w-4 h-4" /> :
                      <Calendar className="w-4 h-4" />}
                   </div>
                 </div>

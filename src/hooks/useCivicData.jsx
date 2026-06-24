@@ -27,6 +27,43 @@ export const CivicDataProvider = ({ children }) => {
   const [joinedGroups, setJoinedGroups] = useState([]);
   const [toasts, setToasts] = useState([]);
 
+  // Theme & Preferences State
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('ns_theme') || 'light';
+  });
+  
+  const [pushNotifications, setPushNotifications] = useState(() => {
+    return localStorage.getItem('ns_push') === 'true';
+  });
+
+  // Apply Theme to Document
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('ns_theme', theme);
+  }, [theme]);
+
+  // Persist Push Notifications
+  useEffect(() => {
+    localStorage.setItem('ns_push', pushNotifications);
+  }, [pushNotifications]);
+
+  // Toggle Push Notifications
+  const togglePushNotifications = () => {
+    setPushNotifications(prev => !prev);
+    showToast(`Push Notifications turned ${!pushNotifications ? 'ON' : 'OFF'}`, 'info');
+  };
+
+  // Toggle Theme
+  const toggleTheme = (newTheme) => {
+    setTheme(newTheme);
+    showToast(`${newTheme === 'dark' ? 'Dark' : 'Light'} Mode Activated`, 'success');
+  };
+
 
   // Toast Helper
   const showToast = (message, type = 'success') => {
@@ -257,6 +294,10 @@ export const CivicDataProvider = ({ children }) => {
         myRedeemedCodes,
         joinedGroups,
         toasts,
+        theme,
+        toggleTheme,
+        pushNotifications,
+        togglePushNotifications,
         switchUserRole,
         addComplaint,
         likeComplaint,

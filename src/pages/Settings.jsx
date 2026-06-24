@@ -1,144 +1,159 @@
 import React, { useState } from 'react';
 import { useCivicData } from '../hooks/useCivicData';
-import { Settings as SettingsIcon, Bell, Shield, MapPin, Eye, Check, Globe } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Settings as SettingsIcon, Bell, Moon, Sun, LogOut, Check, X, AlertTriangle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Settings() {
-  const { showToast } = useCivicData();
-  const [pushNotif, setPushNotif] = useState(true);
-  const [emailNotif, setEmailNotif] = useState(false);
-  const [digest, setDigest] = useState(true);
-  const [theme, setTheme] = useState('dark');
-  const [ward, setWard] = useState('Ward 12 - Vasant Kunj');
+  const { theme, toggleTheme, pushNotifications, togglePushNotifications, showToast } = useCivicData();
+  const navigate = useNavigate();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    showToast("Civic preferences saved successfully!", "success");
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    showToast("Logged out successfully.", "info");
+    setShowLogoutModal(false);
+    navigate('/login', { replace: true });
   };
 
   return (
-    <div className="space-y-8">
-      {/* Title */}
+    <div className="space-y-8 max-w-3xl mx-auto pb-12">
+      {/* Header */}
       <div>
-        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit text-black">System Settings</h2>
-        <p className="text-xs text-black mt-1">Configure your personal smart dashboard, adjust notification frequencies, and refine ward locations.</p>
+        <h2 className="text-2xl md:text-3xl font-extrabold font-outfit">System Settings</h2>
+        <p className="text-xs mt-1 dark:text-slate-400">Manage your preferences, appearance, and account access.</p>
       </div>
 
-      <div className="max-w-2xl mx-auto space-y-6">
-        <form onSubmit={handleSave} className="p-6 rounded-3xl glass-panel space-y-6">
+      <div className="space-y-6">
+        
+        {/* PREFERENCES SECTION */}
+        <section>
+          <h3 className="text-sm font-bold uppercase tracking-widest mb-4 opacity-80">Preferences</h3>
           
-          {/* Section 1: Notification preferences */}
-          <div className="space-y-4">
-            <h3 className="text-xs font-bold text-black uppercase tracking-widest flex items-center gap-1.5 pb-2 border-b border-slate-900/60">
-              <Bell className="w-4 h-4 text-emerald-400" />
-              <span>Notification Alert Channels</span>
-            </h3>
-
-            <div className="space-y-3">
-              <div className="flex items-center justify-between py-1.5">
-                <div>
-                  <h4 className="text-xs font-bold text-black">Push Notifications</h4>
-                  <p className="text-[10px] text-slate-500 mt-0.5">Real-time alerts when AI triage completes or volunteer sweeps dispatched.</p>
+          <div className="glass-panel dark:bg-slate-900/50 dark:border-slate-800 rounded-3xl overflow-hidden shadow-soft">
+            
+            {/* Push Notifications Toggle */}
+            <div className="p-6 border-b border-purple-100/40 dark:border-slate-800/60 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center">
+                  <Bell className="w-5 h-5 text-emerald-500" />
                 </div>
-                <input
-                  type="checkbox"
-                  checked={pushNotif}
-                  onChange={() => setPushNotif(!pushNotif)}
-                  className="w-4 h-4 rounded text-emerald-500 bg-slate-950 border-slate-900 focus:ring-0 focus:ring-offset-0 accent-emerald-500 cursor-pointer"
-                />
-              </div>
-
-              <div className="flex items-center justify-between py-1.5 border-t border-slate-900/40">
                 <div>
-                  <h4 className="text-xs font-bold text-black">Email Dispatches</h4>
-                  <p className="text-[10px] text-slate-500 mt-0.5">Weekly digests summarizing citizen rankings, badges earned, and resolved tickets.</p>
+                  <h4 className="text-sm font-bold">Push Notifications</h4>
+                  <p className="text-[11px] opacity-70 mt-0.5">Receive updates on complaints and community alerts.</p>
                 </div>
-                <input
-                  type="checkbox"
-                  checked={emailNotif}
-                  onChange={() => setEmailNotif(!emailNotif)}
-                  className="w-4 h-4 rounded text-emerald-500 bg-slate-950 border-slate-900 focus:ring-0 focus:ring-offset-0 accent-emerald-500 cursor-pointer"
-                />
               </div>
-
-              <div className="flex items-center justify-between py-1.5 border-t border-slate-900/40">
-                <div>
-                  <h4 className="text-xs font-bold text-black">Carbon & Cleanup Summary</h4>
-                  <p className="text-[10px] text-slate-500 mt-0.5">Notifications about upcoming native tree sapling allocations and cleanup streak saves.</p>
-                </div>
-                <input
-                  type="checkbox"
-                  checked={digest}
-                  onChange={() => setDigest(!digest)}
-                  className="w-4 h-4 rounded text-emerald-500 bg-slate-950 border-slate-900 focus:ring-0 focus:ring-offset-0 accent-emerald-500 cursor-pointer"
+              
+              <button 
+                onClick={togglePushNotifications}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${pushNotifications ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-700'}`}
+              >
+                <span className="sr-only">Toggle push notifications</span>
+                <span 
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-slate-900 transition-transform ${pushNotifications ? 'translate-x-6' : 'translate-x-1'}`}
                 />
-              </div>
+              </button>
             </div>
-          </div>
 
-          {/* Section 2: Ward and Location Settings */}
-          <div className="space-y-4 pt-4">
-            <h3 className="text-xs font-bold text-black uppercase tracking-widest flex items-center gap-1.5 pb-2 border-b border-slate-900/60">
-              <MapPin className="w-4 h-4 text-blue-400" />
-              <span>Ward & Session Settings</span>
-            </h3>
+            {/* Theme Toggle */}
+            <div className="p-6 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-violet/10 dark:bg-brand-violet/20 flex items-center justify-center">
+                  {theme === 'dark' ? <Moon className="w-5 h-5 text-brand-violet" /> : <Sun className="w-5 h-5 text-brand-violet" />}
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold">Application Theme</h4>
+                  <p className="text-[11px] opacity-70 mt-0.5">Switch between Light and Dark mode globally.</p>
+                </div>
+              </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block mb-2">Primary Ward Circle</label>
-                <select
-                  value={ward}
-                  onChange={(e) => setWard(e.target.value)}
-                  className="w-full bg-slate-950/80 border border-slate-900 text-slate-200 px-4 py-2.5 rounded-xl text-xs focus:outline-none focus:border-emerald-500/50"
+              <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+                <button
+                  onClick={() => toggleTheme('light')}
+                  className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${theme === 'light' ? 'bg-white dark:bg-slate-900 dark:bg-slate-700 shadow-sm text-brand-violet dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
                 >
-                  <option value="Ward 12 - Vasant Kunj">Ward 12 - Vasant Kunj</option>
-                  <option value="Ward 4 - Dwarka">Ward 4 - Dwarka</option>
-                  <option value="Ward 9 - Saket">Ward 9 - Saket</option>
-                  <option value="Ward 15 - Rohini">Ward 15 - Rohini</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block mb-2">Display Theme</label>
-                <select
-                  value={theme}
-                  onChange={(e) => setTheme(e.target.value)}
-                  className="w-full bg-slate-950/80 border border-slate-900 text-slate-200 px-4 py-2.5 rounded-xl text-xs focus:outline-none focus:border-emerald-500/50"
+                  ☀️ Light
+                </button>
+                <button
+                  onClick={() => toggleTheme('dark')}
+                  className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${theme === 'dark' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
                 >
-                  <option value="dark">Futuristic Cyber Dark Mode</option>
-                  <option value="light">Classic Light (Emulated)</option>
-                </select>
+                  🌙 Dark
+                </button>
               </div>
             </div>
+
           </div>
+        </section>
 
-          {/* Section 3: Smart city integration integrations */}
-          <div className="space-y-4 pt-4">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5 pb-2 border-b border-slate-900/60">
-              <Globe className="w-4 h-4 text-purple-400" />
-              <span>Municipal API integrations</span>
-            </h3>
-
-            <div className="p-3.5 rounded-xl bg-purple-500/5 border border-purple-500/10 text-[10px] text-slate-450 leading-relaxed space-y-2">
-              <p className="font-bold text-black font-mono uppercase tracking-wider text-[8px]">ACTIVE API TOKENS AVAILABLE</p>
-              <p>NagarSetu is connected to the Municipal Corporations open-data initiative. Your citizen reviews are compiled to optimize street light grid power loads and dump trucks routes.</p>
-              <div className="flex items-center gap-1.5 font-mono text-[9px] text-purple-400 font-bold bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20 max-w-max">
-                MUNI-SECURE-SYNC: CONNECTED
+        {/* ACCOUNT SECTION */}
+        <section>
+          <h3 className="text-sm font-bold uppercase tracking-widest mb-4 opacity-80 mt-10">Account</h3>
+          
+          <div className="glass-panel dark:bg-slate-900/50 dark:border-slate-800 rounded-3xl overflow-hidden shadow-soft">
+            <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-red-500/10 dark:bg-red-500/20 flex items-center justify-center">
+                  <LogOut className="w-5 h-5 text-red-500" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-red-500 dark:text-red-400">Logout Session</h4>
+                  <p className="text-[11px] opacity-70 mt-0.5">Securely end your current session and return to login.</p>
+                </div>
               </div>
+              <button
+                onClick={() => setShowLogoutModal(true)}
+                className="px-6 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 dark:bg-red-500/10 dark:hover:bg-red-500/20 dark:text-red-400 font-bold text-xs rounded-xl transition-colors border border-red-100 dark:border-red-500/30 whitespace-nowrap"
+              >
+                🚪 Logout
+              </button>
             </div>
           </div>
+        </section>
 
-          {/* Action buttons */}
-          <div className="pt-4 border-t border-slate-900/60 flex justify-end">
-            <button
-              type="submit"
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950 font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 shimmer-btn"
-            >
-              <Check className="w-4 h-4" /> Save System Preferences
-            </button>
-          </div>
-
-        </form>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      <AnimatePresence>
+        {showLogoutModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="bg-white/90 dark:bg-slate-900/90 dark:bg-slate-900/90 backdrop-blur-xl border border-white/60 dark:border-slate-800 p-8 rounded-3xl max-w-sm w-full text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)]"
+            >
+              <div className="mx-auto w-16 h-16 bg-red-50 dark:bg-red-500/10 rounded-2xl flex items-center justify-center mb-5 border border-red-100 dark:border-red-500/20 shadow-sm">
+                <AlertTriangle className="w-8 h-8 text-red-500" />
+              </div>
+              
+              <h3 className="text-xl font-bold font-outfit mb-2">
+                Confirm Logout
+              </h3>
+              
+              <p className="text-sm opacity-70 mb-8 leading-relaxed">
+                Are you sure you want to logout from NagarSetu? You will need to sign in again to access the dashboard.
+              </p>
+
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={handleLogout}
+                  className="w-full py-3 px-4 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl text-sm transition-colors shadow-sm"
+                >
+                  Logout
+                </button>
+                <button
+                  onClick={() => setShowLogoutModal(false)}
+                  className="w-full py-3 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl text-sm transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }

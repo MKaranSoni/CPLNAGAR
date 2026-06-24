@@ -217,7 +217,7 @@
 //           {/* Redeemed Codes Vault panel */}
 //           {myRedeemedCodes.length > 0 && (
 //             <div className="p-5 rounded-2xl glass-panel space-y-4">
-//               <h4 className="text-xs font-bold text-black uppercase tracking-widest flex items-center gap-1.5">
+//               <h4 className="text-xs font-bold text-black dark:text-white uppercase tracking-widest flex items-center gap-1.5">
 //                 <Ticket className="w-4 h-4 text-emerald-400 animate-bounce" />
 //                 <span>My Redeemed Vouchers</span>
 //               </h4>

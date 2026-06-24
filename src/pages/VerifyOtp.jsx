@@ -157,7 +157,7 @@ export default function VerifyOtp() {
     : '';
   if (!registrationData) return null;
   return (
-    <div className="glass-panel p-8 rounded-3xl border border-white/60 shadow-premium relative bg-white/70">
+    <div className="glass-panel p-8 rounded-3xl border border-white/60 shadow-premium relative bg-white/70 dark:bg-slate-900/70">
       <AnimatePresence mode="wait">
         {verified ? (
           /* ── Success State ── */
@@ -177,7 +177,7 @@ export default function VerifyOtp() {
               <CheckCircle2 className="w-10 h-10 text-emerald-500" />
             </motion.div>
             <div>
-              <h2 className="text-2xl font-bold font-outfit text-slate-800 mb-1">Verified!</h2>
+              <h2 className="text-2xl font-bold font-outfit text-slate-800 dark:text-slate-100 mb-1">Verified!</h2>
               <p className="text-xs text-slate-500">{successMsg}</p>
             </div>
             <div className="w-full h-1.5 bg-purple-100 rounded-full overflow-hidden mt-2">
@@ -203,7 +203,7 @@ export default function VerifyOtp() {
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-violet/15 to-brand-purple/10 border border-brand-violet/20 mb-4 shadow-glow-violet">
                 <MailCheck className="w-7 h-7 text-brand-violet" />
               </div>
-              <h2 className="text-2xl font-bold font-outfit text-slate-800">Check Your Inbox</h2>
+              <h2 className="text-2xl font-bold font-outfit text-slate-800 dark:text-slate-100">Check Your Inbox</h2>
               <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
                 We sent a 6-digit code to
               </p>
@@ -228,7 +228,7 @@ export default function VerifyOtp() {
                       onKeyDown={(e) => handleKeyDown(idx, e)}
                       whileFocus={{ scale: 1.08 }}
                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      className={`w-11 h-13 text-center text-lg font-bold rounded-xl border-2 outline-none transition-all duration-200 bg-white/80 text-slate-800 shadow-soft
+                      className={`w-11 h-13 text-center text-lg font-bold rounded-xl border-2 outline-none transition-all duration-200 bg-white/80 dark:bg-slate-900/80 text-slate-800 dark:text-slate-100 shadow-soft
                         ${digit
                           ? 'border-brand-violet bg-brand-violet/5 shadow-glow-violet'
                           : 'border-purple-100 focus:border-brand-violet/60'
