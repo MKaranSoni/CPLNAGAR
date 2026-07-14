@@ -15,8 +15,8 @@ export const loginUser = (data) => {
   return axios.post(`${BASE_URL}/login`, data);
 };
 
-export const verifyOtp = (email, otp) => {
-  return axios.post(`${BASE_URL}/verify-otp`, { email, otp });
+export const verifyOtp = (data) => {
+  return axios.post(`${BASE_URL}/verify-otp`, data);
 };
 
 export const resendOtp = (email) => {
