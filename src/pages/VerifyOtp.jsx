@@ -105,7 +105,12 @@ export default function VerifyOtp() {
     setError('');
 
     try {
-      const response = await verifyOtp(email, otpValue);
+      const response = await verifyOtp({
+  email,
+  otp: otpValue,
+  name: registrationData.name,
+  password: registrationData.password
+});
 
       if (response.data.success) {
         if (response.data.token) {
