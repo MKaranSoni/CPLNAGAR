@@ -12,7 +12,11 @@ import {
   CheckCircle,
   HelpCircle
 } from 'lucide-react';
-
+const theme = {
+  primary: "#0F4C81",
+  secondary: "#2E7D32",
+  accent: "#F59E0B",
+};
 export default function LandingPage() {
   const navigate = useNavigate();
 
@@ -67,64 +71,69 @@ export default function LandingPage() {
       border: "hover:border-indigo-500/40"
     }
   ];
-
   return (
-    <div  className="min-h-screen bg-[#F7F5FC] text-slate-700 relative overflow-hidden">
-      {/* Visual background accents */}
-      <div className="absolute top-0 inset-x-0 h-[200px] smart-city-grid opacity-30" /> 
-      <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-brand-violet/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-[25%] right-[-10%] w-[500px] h-[500px] bg-brand-purple/5 rounded-full blur-[140px] pointer-events-none" />
+   <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#F8FCFF] via-[#EEF7F2] to-[#F4F8FB] text-slate-800">
+
+     {/* Smart City Background */}
+
+    <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(#0F4C81_1px,transparent_1px),linear-gradient(90deg,#0F4C81_1px,transparent_1px)] bg-[size:55px_55px]" />
+
+    <div className="absolute top-0 left-0 right-0 h-[280px] bg-gradient-to-b from-sky-100/80 to-transparent"/>
+
+    <div className="absolute bottom-0 left-0 right-0 h-[220px] bg-gradient-to-t from-green-100/60 to-transparent"/>
 
       {/* Landing Header */}
       <header  className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-violet to-brand-purple flex items-center justify-center font-bold text-white shadow-glow-violet text-xl">
-            NS
-          </div>
+         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-700 to-emerald-600 flex items-center justify-center shadow-lg">
+           <ShieldCheck className="w-6 h-6 text-white" />
+         </div>
           <div>
-            <h1 className="text-xl font-bold font-outfit text-slate-800 dark:text-slate-100 leading-none">NagarSetu</h1>
-            <span className="text-[10px] text-brand-violet font-semibold tracking-widest uppercase">Smart Civic Alliance</span>
+           <h1 className="text-2xl font-bold text-slate-800 leading-none">
+             NagarSetu
+           </h1>
+
+           <p className="text-sm text-slate-500 mt-1">
+             Smart Civic Complaint & Environmental Monitoring
+           </p>
           </div>
         </div>
         <button
           onClick={() => navigate('/login')}
-          className="px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-purple-100 text-xs font-bold text-slate-650 hover:text-slate-900 hover:bg-purple-50/50 transition-all shadow-soft"
+        className="px-6 py-3 rounded-xl bg-white border border-blue-200 text-sm font-semibold text-blue-700 hover:bg-blue-50 hover:shadow-lg transition-all"
         >
           Sign In
         </button>
       </header>
-
+<div className="h-[2px] w-full bg-gradient-to-r from-blue-700 via-green-600 to-blue-700 opacity-20" />
       {/* Hero Section */}
-      <section className="max-w-5xl mx-auto px-6 pt-8 pb-10 relative z-10 text-center -mt-6">
+     <section className="max-w-5xl mx-auto px-6 pt-8 pb-10 relative z-10 text-center -mt-6">
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-violet/10 border border-brand-violet/20 text-brand-violet text-xs font-bold mb-6"
+         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 border border-blue-300 text-blue-800 text-xs font-semibold mb-6"
         >
-          <Activity className="w-4 h-4 animate-pulse text-brand-violet" />
-          <span>Fusing AI & Community for Smarter Wards</span>
+          <Activity className="w-4 h-4 animate-pulse text-blue-700" />
+         <span>Smart City • Citizens • Municipal Services • Volunteers</span>
         </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.08 }}
-          className="text-4xl sm:text-6xl font-extrabold font-outfit text-slate-850 tracking-tight leading-[1.1] mb-6"
+          className="text-5xl md:text-6xl xl:text-7xl font-extrabold font-outfit text-slate-850 tracking-tight drop-shadow-sm leading-[1.1] mb-6"
         >
           Connecting Citizens, Volunteers & <br />
           <span className="text-gradient-civic">Municipal Corporations</span>
         </motion.h1>
-
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.16 }}
           className="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10"
         >
-          NagarSetu is a premium decentralized civic-tech hub. Report issues, get automated AI validation, mobilize localized volunteer cleanup circles, track ward AQI scores, and earn verified rewards.
+         Report civic issues like potholes, waste collection, damaged streetlights, and water leakage. Track complaint progress in real time, monitor ward-wise AQI, and collaborate with volunteers to build cleaner, greener, and smarter cities.
         </motion.p>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -133,7 +142,7 @@ export default function LandingPage() {
         >
           <button
             onClick={() => navigate('/register')}
-           className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-violet to-brand-purple hover:from-brand-violet/90 hover:to-brand-purple/90 text-white font-bold text-xs shadow-glow-violet transition-all flex items-center justify-center gap-2 shimmer-btn"
+          className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-blue-700 to-emerald-600 hover:from-blue-800 hover:to-emerald-700 text-white font-semibold shadow-lg transition-all flex items-center justify-center gap-2"
           >
             Join as Citizen Volunteer
           </button>
@@ -203,7 +212,14 @@ export default function LandingPage() {
             return (
               <motion.div
                 key={index}
-                whileHover={{ y: -4 }}
+              whileHover={{
+                  y:-10,
+                  scale:1.03
+              }}
+
+              transition={{
+                  duration:0.35
+              }}
                 className={`p-8 rounded-3xl bg-gradient-to-br ${feature.color} border border-purple-100/50 shadow-soft transition-all duration-300 flex items-start gap-4`}
               >
                 <div className="p-3 bg-white dark:bg-slate-900 rounded-xl border border-purple-100 text-brand-violet flex-shrink-0 shadow-soft">
